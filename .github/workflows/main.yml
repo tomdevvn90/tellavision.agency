@@ -1,0 +1,26 @@
+name: Staging
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Deploy to Staging server
+        uses: appleboy/ssh-action@master
+        with: 
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            source /home/ojuomr49jawx/nodevenv/tellavision-dev/10/bin/activate 
+            cd /home/ojuomr49jawx/tellavision-dev
+            git reset --hard HEAD
+            git pull origin master
+            npm run staging
