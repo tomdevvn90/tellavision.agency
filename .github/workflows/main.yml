@@ -21,6 +21,7 @@ jobs:
           script: |
             source /home/ojuomr49jawx/nodevenv/tellavision-dev/10/bin/activate 
             cd /home/ojuomr49jawx/tellavision-dev
+            git checkout master
             git reset --hard HEAD
             git pull origin master
             npm run staging
