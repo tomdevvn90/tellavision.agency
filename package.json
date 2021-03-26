@@ -29,7 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "staging": "react-scripts build && cp -r /home/ojuomr49jawx/tellavision-dev/build/* /home/ojuomr49jawx/public_html/staging-tellavision.tellavision.agency"
   },
   "eslintConfig": {
     "extends": "react-app"
