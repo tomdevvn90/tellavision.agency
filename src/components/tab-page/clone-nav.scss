@@ -24,6 +24,8 @@
 }
 
 .menu-clone {
+  width: 85%;
+  margin: 0 auto;
 
   ul {
     margin: 0;
@@ -35,6 +37,7 @@
       width: 100%;
       display: flex;
       justify-content: center;
+      height: 145px;
       
       .menu-color-background {
         position: absolute;
@@ -59,7 +62,7 @@
         position: relative;
         z-index: 3;
         text-align: center;
-        margin-top: 22px;
+        margin-top: 12px;
         transition: .5s ease;
         -webkit-transition: .5s ease;
       }

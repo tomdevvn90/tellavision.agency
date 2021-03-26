@@ -84,6 +84,7 @@
 .next_btn svg,
 .prev_btn svg {
   width: 60px;
+  top: 36%;
 }
 .next_btn,
 .prev_btn {

@@ -77,7 +77,7 @@ const MenuClone = ( props ) => {
     let elem = document.querySelector( `.menu-id-${ menu.ID } .menu-color-background` )
     elem.classList.add( '__animate-menu-background' )
 
-    document.querySelector( '#tab-page' ).style.setProperty( 'opacity', .5 )
+    document.querySelector( '#tab-page' ).style.setProperty( 'opacity', .8 )
 
     setTimeout( () => {
       document.querySelector( '#tab-page' ).style.setProperty( 'opacity', 1 )
