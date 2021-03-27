@@ -108,7 +108,7 @@ img {
 }
 #main {
   padding: 15px 0 0;
-  position: relative;
+  position: relative; 
   overflow: hidden;
   display: block;
   width: 85%;
