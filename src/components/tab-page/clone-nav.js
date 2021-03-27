@@ -73,8 +73,47 @@ const MenuClone = ( props ) => {
     history.push( `/${ menu.post_name == 'home' ? 'visuals' : menu.post_name }` )
   }
 
-  const animate = ( menu ) => {
-    let elem = document.querySelector( `.menu-id-${ menu.ID } .menu-color-background` )
+  const animate = ( menu ) => { 
+    let menu_nav_item =  document.querySelector( `.menu-id-${ menu.ID }` )
+    let menu_text = menu_nav_item.querySelector( '.menu-text' )
+    let pos = menu_nav_item.getBoundingClientRect()
+
+    /**
+     * Hidden menu text
+     */
+    menu_text.style.setProperty( 'opacity', 0 )
+
+    /**
+     * Hidden tab title 
+     */
+    let tabTitle = document.querySelector( '#tab-page .tab-title' )
+    let titlePos = tabTitle.getBoundingClientRect()
+    tabTitle.style.setProperty( 'opacity', 0, 'important' )
+
+    /**
+     * Text animate 
+     */
+    let menu_title_shadow = document.createElement( 'span' )
+    menu_title_shadow.style.setProperty( 'transition', '1.2s' )
+    menu_title_shadow.style.setProperty( 'z-index', 10 )
+    menu_title_shadow.style.setProperty( 'position', 'fixed' )
+    menu_title_shadow.style.setProperty( 'left', `${ pos.x }px` )
+    menu_title_shadow.style.setProperty( 'top', `${ pos.y }px` )
+    menu_title_shadow.style.setProperty( 'color', menu.select_logo_color )
+    menu_title_shadow.style.setProperty( 'font-size', `30px` )
+    menu_title_shadow.style.setProperty( 'font-family', 'Playfair Display SC' )
+    menu_title_shadow.innerHTML = menu.post_title
+
+    document.body.appendChild( menu_title_shadow )
+    setTimeout( () => {
+      menu_title_shadow.style.top = titlePos.y + 'px'
+      menu_title_shadow.style.left = titlePos.x + 'px'
+    }, 10 )
+
+    /**
+     * Background animate
+     */
+    let elem = menu_nav_item.querySelector( `.menu-color-background` )
     elem.classList.add( '__animate-menu-background' )
 
     document.querySelector( '#tab-page' ).style.setProperty( 'opacity', .8 )
@@ -82,7 +121,11 @@ const MenuClone = ( props ) => {
     setTimeout( () => {
       document.querySelector( '#tab-page' ).style.setProperty( 'opacity', 1 )
       elem.classList.remove( '__animate-menu-background' )
-    }, 1200 )
+
+      tabTitle.style.setProperty( 'opacity', 1, 'important' )
+      menu_text.style.setProperty( 'opacity', '' )
+      menu_title_shadow.remove()
+    }, 1300 )
   }
 
   return (

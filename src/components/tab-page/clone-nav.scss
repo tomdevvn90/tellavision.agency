@@ -24,7 +24,7 @@
 }
 
 .menu-clone {
-  width: 85%;
+  width: 100%;
   margin: 0 auto;
 
   ul {
@@ -37,7 +37,7 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      height: 135px;
+      height: 145px;
       
       .menu-color-background {
         position: absolute;
@@ -81,7 +81,7 @@
       }
 
       &:hover {
-        height: 155px;
+        height: 165px;
 
         .menu-text {
           opacity: 1;
