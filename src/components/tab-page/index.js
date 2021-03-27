@@ -635,13 +635,13 @@ function TabPage(props) {
             </Link>
 
             <p
-              className="tab-title"
+              className="tab-title" 
               style={{
                 color: tabBasicDetails ? tabBasicDetails.prev_menu.header_settings.text_color : 'inherit',
                 fontFamily:
                   tabBasicDetails ? tabBasicDetails.prev_menu.header_settings.font_family : 'inherit',
                 fontSize:
-                  tabBasicDetails ? tabBasicDetails.prev_menu.header_settings.font_size +
+                  '30px', // tabBasicDetails ? tabBasicDetails.prev_menu.header_settings.font_size +
                     "px" : 'inherit',
                 fontStyle:
                   tabBasicDetails ? tabBasicDetails.prev_menu.header_settings.font_style : 'inherit',
@@ -711,7 +711,7 @@ function TabPage(props) {
                 fontFamily:
                   tabBasicDetails ? tabBasicDetails.header_settings.font_family : 'inherit',
                 fontSize:
-                  tabBasicDetails ? tabBasicDetails.header_settings.font_size +
+                  '30px', //tabBasicDetails ? tabBasicDetails.header_settings.font_size +
                     "px" : 'inherit',
                 fontStyle:
                   tabBasicDetails ? tabBasicDetails.header_settings.font_style : 'inherit',
@@ -792,7 +792,7 @@ function TabPage(props) {
                 fontFamily:
                   tabBasicDetails ? tabBasicDetails.next_menu.header_settings.font_family : 'inherit',
                 fontSize:
-                  tabBasicDetails ? tabBasicDetails.next_menu.header_settings.font_size +
+                  '30px', // tabBasicDetails ? tabBasicDetails.next_menu.header_settings.font_size +
                     "px" : 'inherit',
                 fontStyle:
                   tabBasicDetails ? tabBasicDetails.next_menu.header_settings.font_style : 'inherit',

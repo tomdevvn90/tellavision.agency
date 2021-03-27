@@ -107,7 +107,7 @@ function HomePage(props) {
                 key={index}
                 style={{
                   fontFamily: item.header_settings.font_family,
-                  fontSize: item.header_settings.font_size + "px",
+                  fontSize: '30px', // item.header_settings.font_size + "px",
                   fontStyle: item.header_settings.font_style,
                   backgroundColor: item.background_color,
                   width: `${100 / context.primaryMenu.length}%`                  

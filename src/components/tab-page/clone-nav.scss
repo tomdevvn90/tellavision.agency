@@ -37,7 +37,7 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      height: 145px;
+      height: 135px;
       
       .menu-color-background {
         position: absolute;
@@ -62,7 +62,7 @@
         position: relative;
         z-index: 3;
         text-align: center;
-        margin-top: 12px;
+        margin-top: 20px;
         transition: .5s ease;
         -webkit-transition: .5s ease;
       }
@@ -80,9 +80,8 @@
         z-index: 3;
       }
 
-      &.__is-current,
       &:hover {
-        // height: 170px;
+        height: 155px;
 
         .menu-text {
           opacity: 1;
