@@ -36,7 +36,7 @@ body {
 }
 .primaryMenu {
   position: absolute;
-  width: calc(100% - 30px);
+  width: calc(100% - 15px);
   display: flex;
   align-items: flex-end;
   bottom: 0;
@@ -107,10 +107,12 @@ img {
   margin: auto !important;
 }
 #main {
-  padding: 15px 15px 0;
+  padding: 15px 0 0;
   position: relative;
   overflow: hidden;
   display: block;
+  width: 85%;
+  margin-left: calc(15% /2) !important;
 }
 @media (min-width: 767px) {
   #root > div {
