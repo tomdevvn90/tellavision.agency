@@ -7,7 +7,7 @@ body,
 }
 
 #root {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 body {
@@ -109,6 +109,7 @@ img {
 }
 #root {
   /* max-width: 1480px; */
+  max-width: calc(100% - 30px);
   margin: auto !important;
 }
 #main {

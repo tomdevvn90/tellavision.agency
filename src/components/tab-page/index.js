@@ -562,13 +562,21 @@ function TabPage(props) {
     event.stopPropagation();
     let tabPage = document.getElementById('tab-page');
     let nextPage = document.getElementById('next-page');
+
+    nextPage.classList.add( '__in-animate' )
+
     tabPage.style.opacity = 0;
     tabPage.style.width = '0%';
     nextPage.style.opacity = 1;
     nextPage.style.width = '100%';
     event.target.closest('button').style.display="none";
-    setTimeout(function () { UpdateMenu(menuDetails, 'next')}, 500);
-    setTimeout(function (button) { button.style.display="block";}, 2000, event.target.closest('button'));
+    setTimeout(function () { 
+      UpdateMenu(menuDetails, 'next')
+    }, 500);
+    setTimeout(function (button) { 
+      button.style.display="block";
+      nextPage.classList.remove( '__in-animate' )
+    }, 2000, event.target.closest('button'));
   }
 
   // Show animation on previous button click
@@ -577,13 +585,23 @@ function TabPage(props) {
     event.stopPropagation();
     let tabPage = document.getElementById('tab-page');
     let previousPage = document.getElementById('prev-page');
+
+    previousPage.classList.add( '__in-animate' )
+
     tabPage.style.width = '0%';
     tabPage.style.opacity = 0;
     previousPage.style.width = '100%';
     previousPage.style.opacity = 1;
     event.target.closest('button').style.display="none";
-    setTimeout(function () { UpdateMenu(menuDetails, 'previous')}, 500);
-    setTimeout(function (button) { button.style.display="block";}, 2000, event.target.closest('button'));
+
+    setTimeout(function () { 
+      UpdateMenu(menuDetails, 'previous')
+      
+    }, 500);
+    setTimeout(function (button) { 
+      button.style.display="block";
+      previousPage.classList.remove( '__in-animate' )
+    }, 2000, event.target.closest('button'));
   }
 
   // Get menu item content if tab content is similar to menu

@@ -44,9 +44,11 @@ function HomePage(props) {
   const OpenMenuItem = (event, menuDetails, context) => {
     context.setSelectedTabBasicDetails(menuDetails);
 
-    console.log( 1 )
-    let menuItem = document.querySelector( `.menu-item-id-${ menuDetails.ID }` )
-    menuItem.classList.add( 'full-box-shadow' )
+    setTimeout( () => {
+      let menuItem = document.querySelector( `.menu-item-id-${ menuDetails.ID }` )
+      menuItem.classList.add( 'full-box-shadow' )
+    }, 10 )
+    
 
     let currentMenuItem = event.target;
     let headerLogo = document.getElementById('header-logo');
