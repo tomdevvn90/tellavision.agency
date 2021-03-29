@@ -43,6 +43,11 @@ function HomePage(props) {
   // Open menu on menu item click
   const OpenMenuItem = (event, menuDetails, context) => {
     context.setSelectedTabBasicDetails(menuDetails);
+
+    console.log( 1 )
+    let menuItem = document.querySelector( `.menu-item-id-${ menuDetails.ID }` )
+    menuItem.classList.add( 'full-box-shadow' )
+
     let currentMenuItem = event.target;
     let headerLogo = document.getElementById('header-logo');
     let homeText = document.getElementById("home-text");
@@ -101,11 +106,12 @@ function HomePage(props) {
           <div className="primaryMenu">
             {context.primaryMenu.map((item, index) => (
               <div onClick={(event) => OpenMenuItem(event, item, context)}
-                className={context.selectedTabBasicDetails === null ? 'menu-item' :
-                  ['menu-item',
+                className={context.selectedTabBasicDetails === null ? `menu-item menu-item-id-${ item.ID }` :
+                  ['menu-item', `menu-item-id-${ item.ID }`, 
                     context.selectedTabBasicDetails.ID === item.ID ? 'full-menu-item' : 'small-menu-item'].join(' ')}
                 key={index}
                 style={{
+                  '--bg-color': item.background_color,
                   fontFamily: item.header_settings.font_family,
                   fontSize: '30px', // item.header_settings.font_size + "px",
                   fontStyle: item.header_settings.font_style,
