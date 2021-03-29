@@ -111,6 +111,9 @@ img {
   /* max-width: 1480px; */
   max-width: calc(100% - 30px);
   margin: auto !important;
+  margin-top: 15px !important;
+  /* max-height: calc(100vh - 15px); */
+  height: auto !important;
 }
 #main {
   padding: 15px 0 0;
