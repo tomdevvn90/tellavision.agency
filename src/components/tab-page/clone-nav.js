@@ -31,7 +31,7 @@ const NavCloneforTab = ( props ) => {
 
     setTimeout( () => {
       showNav()
-    }, 1500 ) 
+    }, 1200 ) 
   } )
 
   if( ! currentMenu ) return false;
@@ -84,6 +84,22 @@ const MenuClone = ( props ) => {
     let pos = menu_nav_item.getBoundingClientRect()
 
     /**
+     * Logo
+     */
+    let logo = document.querySelector( '.header_logo_img' )
+    let logo_pos = logo.getBoundingClientRect()
+    let logo_clone = logo.cloneNode( true )
+    
+    logo_clone.classList.add( '__clone-logo' )
+    logo_clone.style.setProperty( 'position', 'absolute' )
+    logo_clone.style.setProperty( 'left', `${ logo_pos.x }px` )
+    logo_clone.style.setProperty( 'top', `${ logo_pos.y }px` )
+    logo_clone.style.setProperty( 'width', `${ logo_pos.width }px` )
+    logo_clone.style.setProperty( 'z-index', 10 )
+
+    document.body.appendChild( logo_clone )
+
+    /**
      * Hidden menu text
      */
     menu_text.style.setProperty( 'opacity', 0 )
@@ -130,6 +146,7 @@ const MenuClone = ( props ) => {
       tabTitle.style.setProperty( 'opacity', 1, 'important' )
       menu_text.style.setProperty( 'opacity', '' )
       menu_title_shadow.remove()
+      logo_clone.remove()
     }, 1300 )
   }
 

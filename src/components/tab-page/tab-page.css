@@ -219,3 +219,13 @@ button.prev_btn.about_prev_next_btn {
   /* display: initial; */
   overflow: initial;
 }
+
+a.header_logo_img {
+  display: inline-block;
+}
+
+a.header_logo_img.__clone-logo img {
+  padding: 40px 0 0 60px;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
