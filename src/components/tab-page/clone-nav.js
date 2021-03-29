@@ -23,9 +23,15 @@ const NavCloneforTab = ( props ) => {
   useEffect( () => {
     if( ! currentMenu ) return;
 
-    ( [ 16, 19 ].includes( currentMenu.ID ) ) 
-      ? setShow( 0 ) 
-      : setShow( 1 )
+    const showNav = () => {
+      ( [ 16, 19 ].includes( currentMenu.ID ) ) 
+        ? setShow( 0 ) 
+        : setShow( 1 )
+    }
+
+    setTimeout( () => {
+      showNav()
+    }, 1500 ) 
   } )
 
   if( ! currentMenu ) return false;
@@ -47,7 +53,6 @@ const NavCloneforTab = ( props ) => {
           menu={ menu } 
           activeid={ currentMenu.ID } 
           onGoMenu={ ( menu ) => { 
-            console.log( menu );
             context.setSelectedTabBasicDetails( menu )
             updateTab( menu )
           } }/>
@@ -102,7 +107,7 @@ const MenuClone = ( props ) => {
     menu_title_shadow.style.setProperty( 'color', menu.select_logo_color )
     menu_title_shadow.style.setProperty( 'font-size', `30px` )
     menu_title_shadow.style.setProperty( 'font-family', 'Playfair Display SC' )
-    menu_title_shadow.innerHTML = menu.post_title
+    menu_title_shadow.innerHTML = menu_text.innerHTML// menu.post_title
 
     document.body.appendChild( menu_title_shadow )
     setTimeout( () => {
