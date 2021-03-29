@@ -227,5 +227,5 @@ a.header_logo_img {
 a.header_logo_img.__clone-logo img {
   padding: 40px 0 0 60px;
   max-width: 100% !important;
-  box-sizing: border-box;
+  box-sizing: border-box; 
 }
