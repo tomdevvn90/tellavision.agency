@@ -530,11 +530,12 @@ function TabPage(props) {
     nextPage.style.opacity = 1;
     nextPage.style.width = '100%';
     event.target.closest('button').style.display="none";
-
-    
     
     setTimeout(function () { 
       UpdateMenu(menuDetails, 'next')
+      // console.log( menuDetails.background_color )
+      document.querySelector( '#tab-page' ).style.setProperty( 'background-color', menuDetails.background_color )
+      document.querySelector( '#tab-page' ).style.setProperty( 'box-shadow', `${ menuDetails.background_color } 0px 0px 0px 100vw` )
     }, 500);
 
     setTimeout(function (button) { 
@@ -561,6 +562,8 @@ function TabPage(props) {
 
     setTimeout(function () { 
       UpdateMenu(menuDetails, 'previous')
+      document.querySelector( '#tab-page' ).style.setProperty( 'background-color', menuDetails.background_color )
+      document.querySelector( '#tab-page' ).style.setProperty( 'box-shadow', `${ menuDetails.background_color } 0px 0px 0px 100vw` )
     }, 500);
     
     setTimeout(function (button) { 
