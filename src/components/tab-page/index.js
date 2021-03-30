@@ -516,6 +516,22 @@ function TabPage(props) {
     history.push(updatedMenuTitle);
   }
 
+  const fixNextPrevEffect = ( menuItem ) => {
+    let shadowElement = document.createElement( 'DIV' )
+
+    shadowElement.style.setProperty( 'position', 'absolute' )
+    shadowElement.style.setProperty( 'left', '15px' )
+    shadowElement.style.setProperty( 'top', '15px' )
+    shadowElement.style.setProperty( 'z-index', '-1' )
+    shadowElement.style.setProperty( 'width', 'calc(100vw - 30px)' )
+    shadowElement.style.setProperty( 'height', 'calc(100vh - 15px)' )
+    shadowElement.style.setProperty( 'background-color', menuItem.background_color )
+
+    document.body.appendChild( shadowElement )
+
+    return shadowElement
+  }
+
   // Show animation on next button click
   const nextBtn = (event, menuDetails) => {
     event.preventDefault();
@@ -531,6 +547,8 @@ function TabPage(props) {
     nextPage.style.width = '100%';
     event.target.closest('button').style.display="none";
     
+    let shadow_background = fixNextPrevEffect( menuDetails )
+
     setTimeout(function () { 
       UpdateMenu(menuDetails, 'next')
       // console.log( menuDetails.background_color )
@@ -541,6 +559,7 @@ function TabPage(props) {
     setTimeout(function (button) { 
       button.style.display="block";
       nextPage.classList.remove( '__in-animate' )
+      shadow_background.remove()
       // setSwitchMenu( !switchMenu )
     }, 2000, event.target.closest('button'));
   }
@@ -560,6 +579,8 @@ function TabPage(props) {
     previousPage.style.opacity = 1;
     event.target.closest('button').style.display="none";
 
+    let shadow_background = fixNextPrevEffect( menuDetails )
+
     setTimeout(function () { 
       UpdateMenu(menuDetails, 'previous')
       document.querySelector( '#tab-page' ).style.setProperty( 'background-color', menuDetails.background_color )
@@ -569,6 +590,7 @@ function TabPage(props) {
     setTimeout(function (button) { 
       button.style.display="block";
       previousPage.classList.remove( '__in-animate' )
+      shadow_background.remove()
     }, 2000, event.target.closest('button'));
   }
 
