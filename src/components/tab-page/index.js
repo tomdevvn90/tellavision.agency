@@ -52,44 +52,6 @@ const PageDataDiv = styled.div`
       : ""};
   `;
 
-// const CustomTypeContent = ({ pageContent, OpenSubmenuItem, tabListingStyle }) => {
-//   return (
-//     <div
-//       className="menu-item-main-content"
-//       style={{
-//         display: pageContent ? "flex" : "none"        
-//       }}
-//     >
-//       {pageContent && <table
-//         style={{
-//           display: "inline-block",
-//           textAlign: "left",
-//           verticalAlign: "top",
-//           padding: "0 10px",          
-//         }}
-//       >
-//         <tbody>
-//           {pageContent.length > 0 && pageContent.map((formatedData, index) => (
-//             <tr key={index}>
-//               {formatedData.map((data, index) => (
-//                 <td style={{ padding: "0 20px" }} key={index}>
-//                   <TabListingItem
-//                     tabListingStyle={tabListingStyle}
-//                     href="#"
-//                     id={"listing_" + data.id}
-//                     onClick={(event) => OpenSubmenuItem(event, data.id)}
-//                   >
-//                     {data.title.rendered}
-//                   </TabListingItem>
-//                 </td>
-//               ))}
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>}
-//     </div>)
-// }
-
 const CustomTypeContent = ({ pageContent, OpenSubmenuItem, tabListingStyle }) => {
   return (
     <div
@@ -190,28 +152,40 @@ function TabPage(props) {
   const [pageData, setPageData] = useState({});
   const [previousPageData, setPreviousPageData] = useState({});
   const [nextPageData, setNextPageData] = useState({});
+
+  const [backgroundColor, setBackgroundColor] = useState( sharedData?.selectedTabBasicDetails?.background_color );
+  const [switchMenu, setSwitchMenu] = useState( false )
+  
   const history = useTransitionHistory();
 
+  useEffect( () => {
+    const updateBackgroundColor = () => {
+      if( tabBasicDetails?.background_color )
+        setBackgroundColor( tabBasicDetails?.background_color ) 
+    }
+    setTimeout( updateBackgroundColor, 500 )
+  }, [ switchMenu ] )
 
   // Fetch all required data from API
   useEffect(() => {
+
     if (tabBasicDetails !== null) {
       let APICall = getTabContentUrl(tabBasicDetails, "current");
       if(tabBasicDetails.object_id === "13"){
         getAboutPageFirstItemContent("current");
       }
-      APICall.then(res => {
+      APICall.then( res => {
         let mainPageData = res.data;
         strctureContentBasedOnTabType(tabBasicDetails, mainPageData, "current");
+        // setSwitchMenu( !switchMenu )
         if (!sliderAnimation) setSliderAnimation();
-      })
-        .catch(error => {
-          console.log("Error in fetching current tab content: " + error);
-          setTabContent([]);
-          setPageData({});
-          setCurrentTabType("");
-          setCurrentTabId("");
-        })
+      } ).catch( error => {
+        console.log("Error in fetching current tab content: " + error);
+        setTabContent([]);
+        setPageData({});
+        setCurrentTabType("");
+        setCurrentTabId("");
+      } )
 
       let prevAPICall = getTabContentUrl(tabBasicDetails.prev_menu, "previous");
       if(tabBasicDetails.prev_menu.object_id === "13"){
@@ -285,8 +259,6 @@ function TabPage(props) {
                   setCurrentTabId("");
                 })
 
-
-
               let prevAPICall = getTabContentUrl(selectedMenu.prev_menu, "previous");
               if(selectedMenu.prev_menu.object_id === "13"){
                 getAboutPageFirstItemContent("previous");
@@ -303,8 +275,6 @@ function TabPage(props) {
                   setPreviousTabType("");
                   setPreviousTabId("");
                 })
-
-
 
               let nextAPICall = getTabContentUrl(selectedMenu.next_menu, "next");
               if(selectedMenu.next_menu.object_id === "13"){
@@ -421,21 +391,11 @@ function TabPage(props) {
       else
         setNextTabContent(mainPageData);
     }
+
+    setSwitchMenu( !switchMenu )
   }
 
-  // Format custom type tab data based on its length
-  // const formateTabData = (tabData) => {
-  //   let formatedData = [];
-  //   let dataLength = tabData.length;
-  //   if (dataLength <= 24) {
-  //     formatedData = Chunkify(tabData, dataLength / 2);
-  //   } else {
-  //     formatedData = Chunkify(tabData, dataLength / 3);
-  //   }
-  //   return formatedData;
-  // }
   const formateTabData = (tabData) => {
-    // tabData.splice(13);
     let formatedData = [];
     let dataLength = tabData.length;
     if(dataLength <= 5){
@@ -570,12 +530,17 @@ function TabPage(props) {
     nextPage.style.opacity = 1;
     nextPage.style.width = '100%';
     event.target.closest('button').style.display="none";
+
+    
+    
     setTimeout(function () { 
       UpdateMenu(menuDetails, 'next')
     }, 500);
+
     setTimeout(function (button) { 
       button.style.display="block";
       nextPage.classList.remove( '__in-animate' )
+      // setSwitchMenu( !switchMenu )
     }, 2000, event.target.closest('button'));
   }
 
@@ -596,8 +561,8 @@ function TabPage(props) {
 
     setTimeout(function () { 
       UpdateMenu(menuDetails, 'previous')
-      
     }, 500);
+    
     setTimeout(function (button) { 
       button.style.display="block";
       previousPage.classList.remove( '__in-animate' )
@@ -697,12 +662,14 @@ function TabPage(props) {
           <div
             id="tab-page"
             style={{
-              boxShadow: `0px 0px 0px 100vw ` + ((tabBasicDetails && tabBasicDetails.background_color)
-              ? tabBasicDetails.background_color
-              : "inherit"),
-              backgroundColor: tabBasicDetails
-                ? tabBasicDetails.background_color
-                : "inherit",
+              background: backgroundColor,
+              boxShadow: `0px 0px 0px 100vw ${ backgroundColor }`
+              // boxShadow: `0px 0px 0px 100vw ` + ((tabBasicDetails && tabBasicDetails.background_color)
+              // ? tabBasicDetails.background_color
+              // : "inherit"),
+              // backgroundColor: tabBasicDetails
+              //   ? tabBasicDetails.background_color
+              //   : "inherit",
             }}
           >
             <Helmet>
@@ -848,8 +815,11 @@ function TabPage(props) {
 
           </div>
           <NavCloneforTab 
-            context={ context }
-            updateTab={ setTabBasicDetails } 
+            onUpdateTab={ ( menu ) => {
+              context.setSelectedTabBasicDetails( menu )
+              setTabBasicDetails( menu )
+              setSwitchMenu( ! switchMenu )
+            } }
             currentMenu={ tabBasicDetails } 
             menu={ sharedData.primaryMenu } />
         </div>

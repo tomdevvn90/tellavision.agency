@@ -103,9 +103,14 @@
   height: calc(100% - 307px);
 }
 .prev_btn {
-  left: 0;
+  left: -7vw;
   right: inherit;
 }
+
+.next_btn {
+  right: -7vw;
+}
+
 .prev_btn:hover,
 .next_btn:hover {
   opacity: 1;

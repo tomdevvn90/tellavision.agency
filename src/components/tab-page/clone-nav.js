@@ -17,7 +17,7 @@ const MenuContainer = Styled.div`
  * @returns 
  */
 const NavCloneforTab = ( props ) => {
-  const { context, menu, updateTab, currentMenu } = props
+  const { menu, currentMenu, onUpdateTab } = props
   const [ show, setShow ] = useState( 0 )
 
   useEffect( () => {
@@ -53,8 +53,9 @@ const NavCloneforTab = ( props ) => {
           menu={ menu } 
           activeid={ currentMenu.ID } 
           onGoMenu={ ( menu ) => { 
-            context.setSelectedTabBasicDetails( menu )
-            updateTab( menu )
+            if( onUpdateTab ) {
+              onUpdateTab( menu )
+            }
           } }/>
       </MenuContainer>
     </div>
@@ -89,6 +90,7 @@ const MenuClone = ( props ) => {
     let logo = document.querySelector( '.header_logo_img' )
     let logo_pos = logo.getBoundingClientRect()
     let logo_clone = logo.cloneNode( true )
+    console.log( logo_pos )
     
     logo_clone.classList.add( '__clone-logo' )
     logo_clone.style.setProperty( 'position', 'absolute' )
