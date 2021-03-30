@@ -1,7 +1,8 @@
 import axios from "axios";
 
 // const API_ENDPOINT = "http://192.168.0.158/tellavision/wp-json/";
-const API_ENDPOINT = "https://tellvisionagency.aliansoftware.net/wp-json/";
+// const API_ENDPOINT = "https://tellvisionagency.aliansoftware.net/wp-json/";
+const API_ENDPOINT = "https://admin.tellavision.agency/wp-json/";
 const API = {
   fetchLogo: function () {
     return axios.get(API_ENDPOINT + `mytheme/v1/settings/`);
