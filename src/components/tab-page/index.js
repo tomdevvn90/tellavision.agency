@@ -564,7 +564,7 @@ function TabPage(props) {
       UpdateMenu(menuDetails, 'previous')
       document.querySelector( '#tab-page' ).style.setProperty( 'background-color', menuDetails.background_color )
       document.querySelector( '#tab-page' ).style.setProperty( 'box-shadow', `${ menuDetails.background_color } 0px 0px 0px 100vw` )
-    }, 500);
+    }, 500); 
     
     setTimeout(function (button) { 
       button.style.display="block";
