@@ -283,3 +283,23 @@ img {
   -webkit-animation: __scaleEffectBg 6s;
   z-index: -1;
 }
+
+.menu-item:after {
+  content: "";
+  background-color: var(--bg-color);
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transition: 2s ease;
+  -webkit-transition: 2s ease;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  z-index: -1;
+}
+
+.full-menu-item:after {
+  width: calc(100% + 20vw);
+  height: calc(100% + 20vh);
+}

@@ -46,7 +46,7 @@ function HomePage(props) {
 
     setTimeout( () => {
       let menuItem = document.querySelector( `.menu-item-id-${ menuDetails.ID }` )
-      menuItem.classList.add( 'full-box-shadow' )
+      // menuItem.classList.add( 'full-box-shadow' )
     }, 10 )
     
 
@@ -74,7 +74,7 @@ function HomePage(props) {
         setTimeout(function (logo) { document.getElementById('header-logo').src = logo; }, 1000, context.whiteLogo);
       }
       let menuTitle = menuDetails.title.toLowerCase().replace(' ', '-');
-      setTimeout(function () { history.push(`${menuTitle}`); }, 1200);
+      setTimeout(function () { history.push(`${menuTitle}`); }, 1500);
     }
   }
 
