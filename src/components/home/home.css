@@ -249,7 +249,7 @@ img {
   }
 
   #root > div {
-    min-height: 800px;
+    /* min-height: 800px; */
   }
 }
 @media(max-width:991px){
