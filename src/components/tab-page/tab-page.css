@@ -52,7 +52,7 @@
   cursor: pointer;
 }
 
-#tab-page .close-btn {
+#tab-page .close-btn { 
   text-decoration: none;
   position: absolute;
   top: 38px;
