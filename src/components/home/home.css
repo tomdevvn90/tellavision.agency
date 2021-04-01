@@ -35,8 +35,8 @@ body {
 }
 .small-header-logo {
   max-width: 251pt !important;
-  padding-top: 40px !important;
-  padding-left: 60px !important;
+  padding-top: 25px !important;
+  padding-left: 0px !important;
   height: auto;
 }
 .primaryMenu {

@@ -33,8 +33,8 @@
 #next-page .header_logo_img img,
 #prev-page .header_logo_img img {
   max-width: 251pt !important;
-  padding-top: 40px !important;
-  padding-left: 60px !important;
+  padding-top: 25px !important;
+  padding-left: 0px !important;
   height:auto;
 }
 
@@ -42,8 +42,8 @@
 #next-page .tab-title,
 #prev-page .tab-title {
   position: absolute !important;
-  left: 322pt !important;
-  top:61pt !important;
+  left: 282pt !important;
+  top:52pt !important;
   opacity: 1 !important;
   right: inherit;
   text-align: center;
@@ -55,7 +55,7 @@
 #tab-page .close-btn { 
   text-decoration: none;
   position: absolute;
-  top: 38px;
+  top: 24px;
   right: -5vw;
   font-size: 0px;
   background-image: url("../../assets/close_icon.png"); 
@@ -230,7 +230,7 @@ a.header_logo_img {
 }
 
 a.header_logo_img.__clone-logo img {
-  padding: 40px 0 0 60px;
+  padding: 25px 0 0 0;
   max-width: 100% !important;
   box-sizing: border-box; 
 }
