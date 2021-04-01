@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, createRef } from 'react'
 import Styled from 'styled-components'
 import { useTransitionHistory } from 'react-route-transition'
 import './clone-nav.scss'
@@ -69,7 +69,22 @@ const NavCloneforTab = ( props ) => {
  */
 const MenuClone = ( props ) => {
   let { menu, activeid, onGoMenu } = props
-  const history = useTransitionHistory();
+  const history = useTransitionHistory()
+  const ulRef = createRef()
+
+  useEffect( () => {
+    const updateMenuHeight = () => {
+      let liChild = ulRef.current.querySelectorAll( 'li' )
+      let width = liChild[0]?.clientWidth
+
+      liChild.forEach( ( li, index ) => {
+        li.style.setProperty( '--height-value', `${ width }px` )
+        li.style.setProperty( '--total-nav-item', liChild.length )
+      } )
+    }
+
+    updateMenuHeight()
+  } )
 
   const goLink = ( e, menu ) => {
     e.preventDefault()
@@ -90,7 +105,6 @@ const MenuClone = ( props ) => {
     let logo = document.querySelector( '.header_logo_img' )
     let logo_pos = logo.getBoundingClientRect()
     let logo_clone = logo.cloneNode( true )
-    console.log( logo_pos )
     
     logo_clone.classList.add( '__clone-logo' )
     logo_clone.style.setProperty( 'position', 'absolute' )
@@ -154,7 +168,7 @@ const MenuClone = ( props ) => {
 
   return (
     <div className="menu-clone">
-      <ul>
+      <ul ref={ ulRef }>
         { menu.map( item => {
 
           let menu_bg_style = {

@@ -25,7 +25,7 @@ const TabListingItem = styled.a`
     props.tabListingStyle ? props.tabListingStyle.font_weight : ""};
   text-decoration: none;
   text-transform: uppercase;
- 
+
   &:hover {
     color: ${(props) =>
     props.tabListingStyle && (props.tabListingStyle.text_color == "#000000" || props.tabListingStyle.text_color == "#000")

@@ -34,10 +34,10 @@
     align-items: flex-end;
 
     li.menu-item {
-      width: 100%;
       display: flex;
       justify-content: center;
-      height: 145px;
+      height: var(--height-value);
+      width: calc(100% / var(--total-nav-item));
       
       .menu-color-background {
         position: absolute;
@@ -81,7 +81,7 @@
       }
 
       &:hover {
-        height: 165px;
+        height: calc(var(--height-value) + 20px);
 
         .menu-text {
           opacity: 1;
