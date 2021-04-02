@@ -5,8 +5,8 @@ import './clone-nav.scss'
 
 const MenuContainer = Styled.div`
   opacity: ${ props => props.show };
-  transform: ${ props => ( props.show ? `translateY(0%);` : `translateY(80%);` ) }
-  -webkit-transform: ${ props => ( props.show ? `translateY(0%);` : `translateY(80%);` ) }
+  transform: ${ props => ( props.show ? `translateY(0%);` : `translateY(100%);` ) }
+  -webkit-transform: ${ props => ( props.show ? `translateY(0%);` : `translateY(100%);` ) }
   transition: .5s ease;
   -webkit-transition: .5s ease;
   `
@@ -29,7 +29,7 @@ const NavCloneforTab = ( props ) => {
         : setShow( 1 )
     }
 
-    setTimeout( () => {
+    setTimeout( () => { 
       showNav()
     }, 1200 ) 
   } )

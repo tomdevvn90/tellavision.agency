@@ -76,9 +76,9 @@ body {
   width: 100% !important;
 }
 .full-menu-item .full-menu-title {
-  position: absolute !important;
-  left: 322pt !important;
-  top: 61pt !important;
+  position: absolute !important; 
+  left: 282pt !important;
+  top: 52pt !important;
   opacity: 1 !important;
   right: inherit;
 }

@@ -6,6 +6,7 @@ import { useTransitionHistory } from "react-route-transition";
 import { Link } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import NavCloneforTab from './clone-nav'
+import HomeNav from '../home/home-nav'
 
 import APIService from "../../services";
 import "./tab-page.css";
@@ -410,13 +411,52 @@ function TabPage(props) {
   }
 
   // Close current tab on X click
-  const CloseMenuItem = (event) => {
+  const CloseMenuItem = (event, context) => {
     event.preventDefault();
     event.stopPropagation();
     setTabContent([]);
     setPreviousTabContent([]);
     setNextTabContent([]);
-    history.push("/");
+
+    context.setSelectedTabBasicDetails( null )
+
+    let layer_bg_color = document.createElement( 'DIV' )
+    {
+      /**
+       * Aminate close
+       */
+      let menuItem = document.querySelector( '.menu-item.__is-current' )
+      let menuPos = menuItem.getBoundingClientRect()
+      let menuColor = menuItem.querySelector( '.menu-item.__is-current .menu-color-background' ).style.backgroundColor
+      
+      layer_bg_color.style.setProperty( 'position', 'absolute' )
+      layer_bg_color.style.setProperty( 'left', '15px' )
+      layer_bg_color.style.setProperty( 'top', '15px' )
+      layer_bg_color.style.setProperty( 'width', 'calc(100vw - 30px)' )
+      layer_bg_color.style.setProperty( 'height', 'calc(100vh - 15px)' )
+      layer_bg_color.style.setProperty( 'background', menuColor )
+      layer_bg_color.style.setProperty( 'transition', '1.2s' )
+      layer_bg_color.style.setProperty( '-webkit-transition', '1.2s' )
+      document.body.appendChild( layer_bg_color )
+
+      document.querySelector( '#tab-page' ).style.setProperty( 'box-shadow', 'none' )
+      document.querySelector( '#tab-page' ).style.setProperty( 'background', 'none' )
+
+      document.querySelector( '.nav-clone' ).style.setProperty( 'transform', 'translateY(100%)' )
+      document.querySelector( '.nav-clone' ).style.setProperty( '-webkit-transform', 'translateY(100%)' )
+
+      setTimeout( () => {
+        layer_bg_color.style.setProperty( 'width', `${ menuItem.clientWidth }px` )
+        layer_bg_color.style.setProperty( 'height', `${ menuItem.clientHeight }px` )
+        layer_bg_color.style.setProperty( 'left', `${ menuPos.x }px` )
+        layer_bg_color.style.setProperty( 'top', `${ menuPos.y + menuPos.height }px` )
+      }, 10 )
+    }
+
+    setTimeout( () => {
+      history.push( '/' );
+      layer_bg_color.remove();
+    }, 1200 )
   };
 
   // Navigate to new sub menu on click
@@ -735,7 +775,7 @@ function TabPage(props) {
             <div className="close_right">
             <a
               className="close-btn"
-              onClick={(event) => CloseMenuItem(event)}
+              onClick={(event) => CloseMenuItem(event, context)}
             >
               X
           </a>
@@ -847,6 +887,15 @@ function TabPage(props) {
             } }
             currentMenu={ tabBasicDetails } 
             menu={ sharedData.primaryMenu } />
+          
+          {/* <HomeNav 
+            appContext={ context }
+            onUpdateTab={ ( menu ) => {
+              context.setSelectedTabBasicDetails( menu )
+              setTabBasicDetails( menu )
+              setSwitchMenu( ! switchMenu )
+            } }
+            menu={ context.primaryMenu } /> */}
         </div>
       )}
     </MyContext.Consumer>

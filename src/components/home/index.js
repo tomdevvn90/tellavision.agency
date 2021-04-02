@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet";
 
 import APIService from "../../services";
 import MyContext from "../../MyContext";
+import HomeNav from './home-nav'
 import "./home.css";
 
 // Home page component
@@ -13,6 +14,19 @@ function HomePage(props) {
   const [homeText, setHomeText] = useState("");
   const [homeTextStyle, setHomeTextStyle] = useState("");
   const [homePageFeaturedImage, setHomePageFeaturedImage] = useState("");
+
+  useTransition( {
+    handlers: [
+      {
+        path: '/',
+        onEnter: async () => {
+          if( document.querySelector( '#header-logo' ) )
+            document.querySelector( '#header-logo' ).classList.add( 'small-header-logo' )
+        }
+      }
+    ]
+  } ) 
+
   const history = useTransitionHistory();
 
   // Fetch all required data from API
@@ -90,6 +104,60 @@ function HomePage(props) {
     }
   }
 
+  /**
+   * 
+   * @param {Object Menu} menu 
+   * @param {Function} callback 
+   */
+  const AnimRedirectMenu = ( menu, callback ) => {
+    let main = document.querySelector( '#main' )
+    let menuEl = document.querySelector( '.home-nav' )
+    let menuTitle = document.querySelector( `.menu-item.menu-id-${ menu.ID } .menu-text` )
+
+    let mainPos = main.getBoundingClientRect()
+    let menuItemPos = menuTitle.getBoundingClientRect()
+
+    let data = {
+      elems: []
+    }
+
+    {
+      /**
+       * Title
+       */
+      let title = document.createElement( 'DIV' )
+      data.elems.push( title )
+      
+      title.style.setProperty( 'color', menuTitle.style.color )
+      title.style.setProperty( 'position', 'absolute' )
+      title.style.setProperty( 'z-index', 99 )
+      title.style.setProperty( 'top', `${ menuItemPos.y - mainPos.y }px` )
+      title.style.setProperty( 'left', `${ menuItemPos.x - mainPos.x }px` )
+      title.style.setProperty( 'font-size', '30px' )
+      title.style.setProperty( 'font-family', 'Playfair Display SC' )
+      title.style.setProperty( 'transition', '1.2s' )
+      title.style.setProperty( '-webkit-transition', '1.2s' )
+      title.innerHTML = menu.title
+      document.querySelector( '#main' ).appendChild( title )
+
+      setTimeout( () => {
+        title.style.setProperty( 'top', 'calc(52pt + 15px)', 'important' )
+        title.style.setProperty( 'left', '282pt', 'important' )
+      }, 10 )
+    }
+
+    {
+      /**
+       * hide menu
+       */
+      menuEl.classList.add( '__hidden' )
+    }
+
+    if( callback ) {
+      callback.call( '', menu, data )
+    }
+  }
+
   return (
     <MyContext.Consumer>
       {context => (
@@ -105,7 +173,31 @@ function HomePage(props) {
             }}>
             {ReactHtmlParser(homeText)}
           </div>
-          <div className="primaryMenu">
+          <HomeNav 
+            appContext={ context }
+            onUpdateTab={ ( menu ) => {
+              let event = this
+              let animateTime = 1500
+              let menuTitle = menu.title.toLowerCase().replace(' ', '-');
+
+              context.setSelectedTabBasicDetails( menu );
+
+              AnimRedirectMenu( menu, ( menu, data ) => {
+                setTimeout( () => {
+
+                  /**
+                   * Clear elements
+                   */
+                  data.elems.map( ( el ) => { el.remove() } )
+
+                  history.push( `${ menuTitle }` )
+                }, animateTime )
+              } )
+              
+            } }
+            menu={ context.primaryMenu } />
+
+          {/* <div className="primaryMenu">
             {context.primaryMenu.map((item, index) => (
               <div onClick={(event) => OpenMenuItem(event, item, context)}
                 className={context.selectedTabBasicDetails === null ? `menu-item menu-item-id-${ item.ID }` :
@@ -131,7 +223,7 @@ function HomePage(props) {
                 </p>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       )}
     </MyContext.Consumer>
