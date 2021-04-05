@@ -148,6 +148,13 @@ function HomePage(props) {
 
     {
       /**
+       * hidden menu title
+       */
+      menuTitle.style.display = 'none'
+    }
+
+    {
+      /**
        * hide menu
        */
       menuEl.classList.add( '__hidden' )
