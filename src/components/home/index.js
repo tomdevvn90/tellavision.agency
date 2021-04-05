@@ -135,8 +135,8 @@ function HomePage(props) {
       title.style.setProperty( 'left', `${ menuItemPos.x - mainPos.x }px` )
       title.style.setProperty( 'font-size', '30px' )
       title.style.setProperty( 'font-family', 'Playfair Display SC' )
-      title.style.setProperty( 'transition', '1.2s' )
-      title.style.setProperty( '-webkit-transition', '1.2s' )
+      title.style.setProperty( 'transition', '1.4s' )
+      title.style.setProperty( '-webkit-transition', '1.4s' )
       title.innerHTML = menu.title
       document.querySelector( '#main' ).appendChild( title )
 
