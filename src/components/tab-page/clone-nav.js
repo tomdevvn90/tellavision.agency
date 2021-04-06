@@ -18,12 +18,16 @@ const MenuContainer = Styled.div`
  */
 const NavCloneforTab = ( props ) => {
   const { menu, currentMenu, onUpdateTab } = props
-  const [ show, setShow ] = useState( 1 )
+  const [ show, setShow ] = useState( (( [ 16, 19 ].includes( currentMenu?.ID ) ) ? 0 : 1) )
 
   useEffect( () => {
     if( ! currentMenu ) return;
 
     const showNav = () => {
+      /**
+       * 16 => About Us page
+       * 19 => Contact page
+       */
       ( [ 16, 19 ].includes( currentMenu.ID ) ) 
         ? setShow( 0 ) 
         : setShow( 1 )
@@ -31,7 +35,7 @@ const NavCloneforTab = ( props ) => {
 
     setTimeout( () => { 
       showNav()
-    }, 1200 ) 
+    }, 10 ) 
   } )
 
   if( ! currentMenu ) return false;
@@ -44,7 +48,7 @@ const NavCloneforTab = ( props ) => {
     ( [ 16, 19 ].includes( currentMenu.ID ) ) 
       ? setShow( 0 ) 
       : setShow( 1 )
-  }, 500 )
+  }, 10 )
 
   return (
     <div className="nav-clone">

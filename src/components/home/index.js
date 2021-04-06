@@ -136,6 +136,16 @@ function HomePage(props) {
 
     {
       /**
+       * 
+       */
+      if( [ 16, 19 ].includes( menu.ID ) ) { 
+        document.querySelector( '.home-nav' ).style.setProperty( 'transform', 'translateY(100%)' )
+        document.querySelector( '.home-nav' ).style.setProperty( '-webkit-transform', 'translateY(100%)' )
+      }
+    }
+
+    {
+      /**
        * background panel
        */
       let backgroundWrap = document.createElement( 'DIV' )
@@ -175,8 +185,8 @@ function HomePage(props) {
       title.style.setProperty( 'left', `${ menuItemPos.x - mainPos.x }px` )
       title.style.setProperty( 'font-size', '30px' )
       title.style.setProperty( 'font-family', 'Playfair Display SC' )
-      title.style.setProperty( 'transition', '1.4s' )
-      title.style.setProperty( '-webkit-transition', '1.4s' )
+      title.style.setProperty( 'transition', '1.25s' )
+      title.style.setProperty( '-webkit-transition', '1.25s' )
       title.innerHTML = menu.title
       document.querySelector( '#main' ).appendChild( title )
 
