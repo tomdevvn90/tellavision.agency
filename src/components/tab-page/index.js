@@ -442,13 +442,19 @@ function TabPage(props) {
       document.querySelector( '#tab-page' ).style.setProperty( 'box-shadow', 'none' )
       document.querySelector( '#tab-page' ).style.setProperty( 'background', 'none' )
 
-      document.querySelector( '.nav-clone' ).style.setProperty( 'transform', 'translateY(100%)' )
-      document.querySelector( '.nav-clone' ).style.setProperty( '-webkit-transform', 'translateY(100%)' )
+      // document.querySelector( '.nav-clone' ).style.setProperty( 'transform', 'translateY(100%)' )
+      // document.querySelector( '.nav-clone' ).style.setProperty( '-webkit-transform', 'translateY(100%)' )
+
+      if( document.querySelector( '.menu-id-16.__is-current' ) || document.querySelector( '.menu-id-19.__is-current' ) ) {
+        document.querySelector( '.nav-clone > div' ).style.setProperty( 'transform', 'translateY(0%)', 'important' )
+        document.querySelector( '.nav-clone > div' ).style.setProperty( '-webkit-transform', 'translateY(0%)', 'important' )
+        document.querySelector( '.nav-clone > div' ).style.setProperty( 'opacity', '1', 'important' )
+      }
 
       setTimeout( () => {
-        layer_bg_color.style.setProperty( 'width', `${ menuItem.clientWidth }px` )
-        layer_bg_color.style.setProperty( 'height', `${ menuItem.clientHeight }px` )
-        layer_bg_color.style.setProperty( 'left', `${ menuPos.x }px` )
+        layer_bg_color.style.setProperty( 'width', `0px` )
+        layer_bg_color.style.setProperty( 'height', `0px` )
+        layer_bg_color.style.setProperty( 'left', `${ menuPos.x + 30 }px` )
         layer_bg_color.style.setProperty( 'top', `${ menuPos.y + menuPos.height }px` )
       }, 10 )
     }

@@ -23,6 +23,8 @@ const NavCloneforTab = ( props ) => {
   useEffect( () => {
     if( ! currentMenu ) return;
 
+    window.menuItemHeightCache = window.menuItemHeight ? window.menuItemHeight : null
+    console.log( window.menuItemHeightCache )
     const showNav = () => {
       /**
        * 16 => About Us page

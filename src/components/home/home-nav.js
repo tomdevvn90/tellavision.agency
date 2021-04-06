@@ -5,8 +5,7 @@ import './nav.scss'
 
 const MenuContainer = Styled.div`
   opacity: ${ props => props.show };
-  transform: ${ props => ( props.show ? `translateY(0%);` : `translateY(100%);` ) }
-  -webkit-transform: ${ props => ( props.show ? `translateY(0%);` : `translateY(100%);` ) }
+  
   transition: .5s ease;
   -webkit-transition: .5s ease;
   `
@@ -18,11 +17,11 @@ const MenuContainer = Styled.div`
  */
 const HomeNav = ( props ) => {
   const { appContext, menu, currentMenu, onUpdateTab } = props
-  const [ show, setShow ] = useState( true )
+  const [ show, setShow ] = useState( 1 )
 
   return (
     <div className="home-nav">
-      <MenuContainer show={ show }>
+      <MenuContainer show={ 1 }>
         <MainMenu 
           appContext={ appContext }
           menu={ menu } 
@@ -63,10 +62,10 @@ const MainMenu = ( props ) => {
       let liChild = ulRef.current.querySelectorAll( 'li' )
       let width = liChild[0]?.clientWidth
       
-      window.menuItemHeight = width
+      window.menuItemHeight = window.menuItemHeightCache ? window.menuItemHeightCache : width
 
       liChild.forEach( ( li, index ) => {
-        li.style.setProperty( '--height-value', `${ width }px` )
+        li.style.setProperty( '--height-value', `${ window.menuItemHeight }px` )
         li.style.setProperty( '--total-nav-item', liChild.length )
       } )
     }
