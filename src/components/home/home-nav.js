@@ -62,6 +62,8 @@ const MainMenu = ( props ) => {
     const updateMenuHeight = () => {
       let liChild = ulRef.current.querySelectorAll( 'li' )
       let width = liChild[0]?.clientWidth
+      
+      window.menuItemHeight = width
 
       liChild.forEach( ( li, index ) => {
         li.style.setProperty( '--height-value', `${ width }px` )
@@ -93,7 +95,7 @@ const MainMenu = ( props ) => {
             <li 
               className={ [ 'menu-item', `menu-id-${ item.ID }`, ( (activeid && activeid == item.ID) ? '__is-current' : '' ) ].join( ' ' ) } 
               onClick={ event => { goLink( event, item ) } } key={ item.ID }>
-              <div className={ [ 'menu-color-background', (appContext?.selectedTabBasicDetails?.ID == item.ID ? '__is-full-color' : '') ].join( ' ' ) } style={ menu_bg_style }></div>
+              <div className={ [ 'menu-color-background', (appContext?.selectedTabBasicDetails?.ID == item.ID ? '__is-full-color--test' : '') ].join( ' ' ) } style={ menu_bg_style }></div>
               <span className={ [ 'menu-text' ].join( ' ' ) } style={ { color: item.select_logo_color.toLowerCase() } }>{ item.title }</span> 
             </li>
           )

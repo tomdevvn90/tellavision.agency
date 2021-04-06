@@ -29,6 +29,16 @@ function HomePage(props) {
 
   const history = useTransitionHistory();
 
+  useEffect( () => {
+    
+    const setMainHeight = () => {
+      let MainElem = document.querySelector( '#main' )
+      MainElem.style.setProperty( 'height', `${ window.innerWidth * 0.5 }px` )
+    }
+
+    // setMainHeight()
+  } )
+
   // Fetch all required data from API
   useEffect(() => {
     ApplyClosingEffectOnLoad();
@@ -110,15 +120,45 @@ function HomePage(props) {
    * @param {Function} callback 
    */
   const AnimRedirectMenu = ( menu, callback ) => {
+    let root = document.querySelector( '#root' )
     let main = document.querySelector( '#main' )
     let menuEl = document.querySelector( '.home-nav' )
-    let menuTitle = document.querySelector( `.menu-item.menu-id-${ menu.ID } .menu-text` )
+    let menuItem = document.querySelector( `.menu-item.menu-id-${ menu.ID }` )
+    let menuTitle = menuItem.querySelector( `.menu-text` )
 
+    let menuItemLiPos = menuItem.getBoundingClientRect()
     let mainPos = main.getBoundingClientRect()
     let menuItemPos = menuTitle.getBoundingClientRect()
 
     let data = {
       elems: []
+    }
+
+    {
+      /**
+       * background panel
+       */
+      let backgroundWrap = document.createElement( 'DIV' )
+      let backgroundAnim = document.createElement( 'DIV' )
+
+      backgroundWrap.classList.add( 'background-shadow-wrap' )
+      backgroundWrap.style.setProperty( 'left', (menuItemLiPos.x + (menuItemLiPos.width / 2)) + 'px' )
+      backgroundWrap.style.setProperty( 'top', (menuItemLiPos.y + menuItemLiPos.height) + 'px' )
+
+      backgroundAnim.classList.add( 'background-shadow-anim' )
+
+      backgroundWrap.appendChild( backgroundAnim )
+      document.body.appendChild( backgroundWrap )
+
+      data.elems.push( backgroundWrap )
+
+      setTimeout( () => {
+        backgroundAnim.style.setProperty( 'left', `${ ((menuItemLiPos.x + (menuItemLiPos.width / 2)) - 15) * -1 }px` )
+        backgroundAnim.style.setProperty( 'width', `${ root.clientWidth }px` )
+        backgroundAnim.style.setProperty( 'height', `${ root.clientHeight - 15 }px` )
+        backgroundAnim.style.setProperty( 'background-color', menu.background_color ) 
+        // backgroundAnim.style.setProperty( 'box-shadow', `0 300px 0 0 ${ menu.background_color }` )
+      } )
     }
 
     {
@@ -157,7 +197,7 @@ function HomePage(props) {
       /**
        * hide menu
        */
-      menuEl.classList.add( '__hidden' )
+      // menuEl.classList.add( '__hidden' )
     }
 
     if( callback ) {

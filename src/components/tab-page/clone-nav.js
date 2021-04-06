@@ -18,7 +18,7 @@ const MenuContainer = Styled.div`
  */
 const NavCloneforTab = ( props ) => {
   const { menu, currentMenu, onUpdateTab } = props
-  const [ show, setShow ] = useState( 0 )
+  const [ show, setShow ] = useState( 1 )
 
   useEffect( () => {
     if( ! currentMenu ) return;
@@ -75,7 +75,7 @@ const MenuClone = ( props ) => {
   useEffect( () => {
     const updateMenuHeight = () => {
       let liChild = ulRef.current.querySelectorAll( 'li' )
-      let width = liChild[0]?.clientWidth
+      let width = window.menuItemHeight ? window.menuItemHeight : liChild[0]?.clientWidth
 
       liChild.forEach( ( li, index ) => {
         li.style.setProperty( '--height-value', `${ width }px` )

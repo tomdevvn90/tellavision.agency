@@ -140,3 +140,18 @@
     top: 52pt !important;
   }
 }
+
+.background-shadow-wrap {
+  position: absolute;
+  z-index: -1;
+}
+
+.background-shadow-anim {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  transition: 1s ease;
+  -webkit-transition: 1s ease;
+}

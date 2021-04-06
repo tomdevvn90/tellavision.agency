@@ -728,7 +728,7 @@ function TabPage(props) {
             id="tab-page"
             style={{
               background: backgroundColor,
-              boxShadow: `0px 0px 0px 100vw ${ backgroundColor }`
+              boxShadow: `-50vw 0px 0px 0 ${ backgroundColor }, 50vw 0px 0px 0 ${ backgroundColor }`
               // boxShadow: `0px 0px 0px 100vw ` + ((tabBasicDetails && tabBasicDetails.background_color)
               // ? tabBasicDetails.background_color
               // : "inherit"),
