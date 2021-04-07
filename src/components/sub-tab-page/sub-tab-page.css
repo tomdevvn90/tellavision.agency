@@ -6,14 +6,14 @@
 }
 #sub-tab-page .header_logo_img img {
   max-width: 251pt !important;
-  padding-top: 40px !important;
-  padding-left: 60px !important;
+  padding-top: 25px !important;
+  padding-left: 0 !important;
   height: auto;
 }
 #sub-tab-page .tab-title {
   position: absolute !important;
-  left: 322pt !important;
-  top: 61pt !important;
+  left: 282pt !important;
+  top: 52pt !important;
   opacity: 1 !important;
   right: inherit;
   text-align: center;
@@ -24,8 +24,8 @@
 #sub-tab-page .close-btn {
   text-decoration: none;
   position: absolute;
-  top: 60px;
-  right: 60px;
+  top: 24px;
+  right: -5vw;
   font-size: 0px;
   background-image: url("../../assets/close_icon.png");
   width: 60px;
