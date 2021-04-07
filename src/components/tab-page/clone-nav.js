@@ -153,13 +153,38 @@ const MenuClone = ( props ) => {
       menu_title_shadow.style.left = titlePos.x + 'px'
     }, 10 )
 
-    /**
-     * Background animate
-     */
+    let root = document.querySelector( '#root' )
     let elem = menu_nav_item.querySelector( `.menu-color-background` )
-    elem.classList.add( '__animate-menu-background' )
+    let menuItem = menu_nav_item
+    let menuItemLiPos = menuItem.getBoundingClientRect()
+    let backgroundWrap = document.createElement( 'DIV' )
+    let backgroundAnim = document.createElement( 'DIV' )
+    let menuClone = document.querySelector( '.menu-clone' )
+    let menuClonePos = menuClone.getBoundingClientRect()
+    {
+      /**
+       * Background animate
+       */
 
-    document.querySelector( '#tab-page' ).style.setProperty( 'opacity', .8 )
+      backgroundWrap.classList.add( 'background-shadow-wrap' )
+      backgroundWrap.style.setProperty( 'z-index', '3' )
+      backgroundWrap.style.setProperty( 'left', (menuItem.offsetLeft + (menuItemLiPos.width / 2)) + 'px' )
+      backgroundWrap.style.setProperty( 'top', (menuClonePos.y + menuItemLiPos.height) + 'px' )
+
+      backgroundAnim.classList.add( 'background-shadow-anim' )
+
+      backgroundWrap.appendChild( backgroundAnim ) 
+      document.querySelector( '#tab-page' ).appendChild( backgroundWrap )
+
+      setTimeout( () => {
+        backgroundAnim.style.setProperty( 'left', `${ ((menuItemLiPos.x + (menuItemLiPos.width / 2)) - 15) * -1 }px` )
+        backgroundAnim.style.setProperty( 'width', `${ root.clientWidth }px` )
+        backgroundAnim.style.setProperty( 'height', `${ root.clientHeight - 15 }px` )
+        backgroundAnim.style.setProperty( 'background-color', menu.background_color ) 
+      } )
+    }
+
+    // document.querySelector( '#tab-page' ).style.setProperty( 'opacity', .8 )
 
     setTimeout( () => {
       document.querySelector( '#tab-page' ).style.setProperty( 'opacity', 1 )
@@ -169,6 +194,7 @@ const MenuClone = ( props ) => {
       menu_text.style.setProperty( 'opacity', '' )
       menu_title_shadow.remove()
       logo_clone.remove()
+      backgroundWrap.remove()
     }, 1300 )
   }
 
