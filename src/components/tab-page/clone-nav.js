@@ -24,7 +24,7 @@ const NavCloneforTab = ( props ) => {
     if( ! currentMenu ) return;
 
     window.menuItemHeightCache = window.menuItemHeight ? window.menuItemHeight : null
-    console.log( window.menuItemHeightCache )
+    // console.log( window.menuItemHeightCache )
     const showNav = () => {
       /**
        * 16 => About Us page
@@ -179,7 +179,7 @@ const MenuClone = ( props ) => {
       setTimeout( () => {
         backgroundAnim.style.setProperty( 'left', `${ ((menuItemLiPos.x + (menuItemLiPos.width / 2)) - 15) * -1 }px` )
         backgroundAnim.style.setProperty( 'width', `${ root.clientWidth }px` )
-        backgroundAnim.style.setProperty( 'height', `${ root.clientHeight - 15 }px` )
+        backgroundAnim.style.setProperty( 'height', `${ root.clientHeight }px` )
         backgroundAnim.style.setProperty( 'background-color', menu.background_color ) 
       } )
     }

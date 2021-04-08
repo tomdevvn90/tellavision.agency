@@ -164,7 +164,7 @@ function TabPage(props) {
       if( tabBasicDetails?.background_color )
         setBackgroundColor( tabBasicDetails?.background_color ) 
     }
-    setTimeout( updateBackgroundColor, 500 )
+    setTimeout( updateBackgroundColor, 900 )
   }, [ switchMenu ] )
 
   // Fetch all required data from API
@@ -429,6 +429,11 @@ function TabPage(props) {
       let menuPos = menuItem.getBoundingClientRect()
       let menuColor = menuItem.querySelector( '.menu-item.__is-current .menu-color-background' ).style.backgroundColor
       
+      /**
+       * 
+       */
+      document.querySelector( '#tab-page' ).style.setProperty( 'display', 'none' )
+
       layer_bg_color.style.setProperty( 'position', 'absolute' )
       layer_bg_color.style.setProperty( 'left', '15px' )
       layer_bg_color.style.setProperty( 'top', '15px' )
@@ -452,10 +457,11 @@ function TabPage(props) {
       }
 
       setTimeout( () => {
-        layer_bg_color.style.setProperty( 'width', `0px` )
-        layer_bg_color.style.setProperty( 'height', `0px` )
-        layer_bg_color.style.setProperty( 'left', `${ menuPos.x + 30 }px` )
-        layer_bg_color.style.setProperty( 'top', `${ menuPos.y + menuPos.height }px` )
+        // console.log( menuPos.width, menuPos.height )
+        layer_bg_color.style.setProperty( 'width', `${ menuPos.width }px` )
+        layer_bg_color.style.setProperty( 'height', `${ menuPos.height }px` )
+        layer_bg_color.style.setProperty( 'left', `${ menuPos.x }px` )
+        layer_bg_color.style.setProperty( 'top', `${ menuPos.y }px` )
       }, 10 )
     }
 
@@ -735,12 +741,6 @@ function TabPage(props) {
             style={{
               background: backgroundColor,
               boxShadow: `-50vw 0px 0px 0 ${ backgroundColor }, 50vw 0px 0px 0 ${ backgroundColor }`
-              // boxShadow: `0px 0px 0px 100vw ` + ((tabBasicDetails && tabBasicDetails.background_color)
-              // ? tabBasicDetails.background_color
-              // : "inherit"),
-              // backgroundColor: tabBasicDetails
-              //   ? tabBasicDetails.background_color
-              //   : "inherit",
             }}
           >
             <Helmet>
