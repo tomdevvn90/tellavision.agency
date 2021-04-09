@@ -128,6 +128,15 @@ const MenuClone = ( props ) => {
     menu_text.style.setProperty( 'opacity', 0 )
 
     /**
+     * Hidden content
+     */
+    try {
+      document.querySelector( '#tab-page .menu-item-main-content' ).style.setProperty( 'opacity', '0', 'important' )
+    } catch( e ) {
+
+    }
+
+    /**
      * Hidden tab title 
      */
     let tabTitle = document.querySelector( '#tab-page .tab-title' )
@@ -193,6 +202,14 @@ const MenuClone = ( props ) => {
 
       tabTitle.style.setProperty( 'opacity', 1, 'important' )
       menu_text.style.setProperty( 'opacity', '' )
+      
+      try {
+        console.log( document.querySelector( '#tab-page .menu-item-main-content' ) )
+        document.querySelector( '#tab-page .menu-item-main-content' ).style.setProperty( 'opacity', '' )
+      } catch( e ) {
+
+      }
+
       menu_title_shadow.remove()
       logo_clone.remove()
       backgroundWrap.remove()
