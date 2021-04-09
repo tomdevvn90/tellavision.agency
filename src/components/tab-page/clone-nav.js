@@ -104,6 +104,7 @@ const MenuClone = ( props ) => {
     let menu_nav_item =  document.querySelector( `.menu-id-${ menu.ID }` )
     let menu_text = menu_nav_item.querySelector( '.menu-text' )
     let pos = menu_nav_item.getBoundingClientRect()
+    let menu_text_pos = menu_text.getBoundingClientRect()
 
     /**
      * Logo
@@ -137,11 +138,11 @@ const MenuClone = ( props ) => {
      * Text animate 
      */
     let menu_title_shadow = document.createElement( 'span' )
-    menu_title_shadow.style.setProperty( 'transition', '1.2s' )
+    menu_title_shadow.style.setProperty( 'transition', '1.1s cubic-bezier(.48,.05,.73,1.03)' )
     menu_title_shadow.style.setProperty( 'z-index', 10 )
     menu_title_shadow.style.setProperty( 'position', 'fixed' )
-    menu_title_shadow.style.setProperty( 'left', `${ pos.x }px` )
-    menu_title_shadow.style.setProperty( 'top', `${ pos.y }px` )
+    menu_title_shadow.style.setProperty( 'left', `${ menu_text_pos.x }px` )
+    menu_title_shadow.style.setProperty( 'top', `${ menu_text_pos.y }px` )
     menu_title_shadow.style.setProperty( 'color', menu.select_logo_color )
     menu_title_shadow.style.setProperty( 'font-size', `30px` )
     menu_title_shadow.style.setProperty( 'font-family', 'Playfair Display SC' )
