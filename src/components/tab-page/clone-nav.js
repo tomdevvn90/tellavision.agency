@@ -146,31 +146,35 @@ const MenuClone = ( props ) => {
     /**
      * Text animate 
      */
-    let menu_title_shadow = document.createElement( 'span' )
-    menu_title_shadow.style.setProperty( 'transition', '1.1s cubic-bezier(.48,.05,.73,1.03)' )
-    menu_title_shadow.style.setProperty( 'z-index', 10 )
-    menu_title_shadow.style.setProperty( 'position', 'fixed' )
-    menu_title_shadow.style.setProperty( 'left', `${ menu_text_pos.x }px` )
-    menu_title_shadow.style.setProperty( 'top', `${ menu_text_pos.y }px` )
-    menu_title_shadow.style.setProperty( 'color', menu.select_logo_color )
-    menu_title_shadow.style.setProperty( 'font-size', `30px` )
-    menu_title_shadow.style.setProperty( 'font-family', 'Playfair Display SC' )
-    menu_title_shadow.innerHTML = menu_text.innerHTML// menu.post_title
+    // let menu_title_shadow = document.createElement( 'span' )
+    // menu_title_shadow.style.setProperty( 'transition', '1.1s cubic-bezier(.48,.05,.73,1.03)' )
+    // menu_title_shadow.style.setProperty( 'z-index', 10 )
+    // menu_title_shadow.style.setProperty( 'position', 'fixed' )
+    // menu_title_shadow.style.setProperty( 'left', `${ menu_text_pos.x }px` )
+    // menu_title_shadow.style.setProperty( 'top', `${ menu_text_pos.y }px` )
+    // menu_title_shadow.style.setProperty( 'color', menu.select_logo_color )
+    // menu_title_shadow.style.setProperty( 'font-size', `30px` )
+    // menu_title_shadow.style.setProperty( 'font-family', 'Playfair Display SC' )
+    // menu_title_shadow.innerHTML = menu_text.innerHTML// menu.post_title
 
-    document.body.appendChild( menu_title_shadow )
-    setTimeout( () => {
-      menu_title_shadow.style.top = titlePos.y + 'px'
-      menu_title_shadow.style.left = titlePos.x + 'px'
-    }, 10 )
+    // document.body.appendChild( menu_title_shadow )
+    // setTimeout( () => {
+    //   menu_title_shadow.style.top = titlePos.y + 'px'
+    //   menu_title_shadow.style.left = titlePos.x + 'px'
+    // }, 10 )
 
+    let main = document.querySelector( '#main' )
     let root = document.querySelector( '#root' )
     let elem = menu_nav_item.querySelector( `.menu-color-background` )
     let menuItem = menu_nav_item
+    let menuTitle = menuItem.querySelector( `.menu-text` )
     let menuItemLiPos = menuItem.getBoundingClientRect()
     let backgroundWrap = document.createElement( 'DIV' )
     let backgroundAnim = document.createElement( 'DIV' )
     let menuClone = document.querySelector( '.menu-clone' )
     let menuClonePos = menuClone.getBoundingClientRect()
+    let _menuTitle = document.createElement( 'DIV' )
+
     {
       /**
        * Background animate
@@ -181,7 +185,20 @@ const MenuClone = ( props ) => {
       backgroundWrap.style.setProperty( 'left', (menuItem.offsetLeft + (menuItemLiPos.width / 2)) + 'px' )
       backgroundWrap.style.setProperty( 'top', (menuClonePos.y + menuItemLiPos.height) + 'px' )
 
+      // Title 
+      _menuTitle.style.setProperty( 'color', menuTitle.style.color )
+      _menuTitle.style.setProperty( 'position', 'absolute' )
+      _menuTitle.style.setProperty( 'z-index', 1 )
+      _menuTitle.style.setProperty( 'top', `${ menuTitle.offsetTop }px` )
+      _menuTitle.style.setProperty( 'left', `${ menuTitle.offsetLeft }px` )
+      _menuTitle.style.setProperty( 'font-size', '30px' )
+      _menuTitle.style.setProperty( 'font-family', 'Playfair Display SC' )
+      _menuTitle.style.setProperty( 'transition', '1.2s' )
+      _menuTitle.style.setProperty( '-webkit-transition', '1.2s' )
+      _menuTitle.innerHTML = menu.title
+
       backgroundAnim.classList.add( 'background-shadow-anim' )
+      backgroundAnim.appendChild( _menuTitle )
 
       backgroundWrap.appendChild( backgroundAnim ) 
       document.querySelector( '#tab-page' ).appendChild( backgroundWrap )
@@ -191,6 +208,9 @@ const MenuClone = ( props ) => {
         backgroundAnim.style.setProperty( 'width', `${ root.clientWidth }px` )
         backgroundAnim.style.setProperty( 'height', `${ root.clientHeight }px` )
         backgroundAnim.style.setProperty( 'background-color', menu.background_color ) 
+
+        _menuTitle.style.setProperty( 'top', '52pt', 'important' )
+        _menuTitle.style.setProperty( 'left', `${ (main.offsetLeft - 15) + 376 }px`, 'important' )
       } )
     }
 
@@ -210,7 +230,7 @@ const MenuClone = ( props ) => {
 
       }
 
-      menu_title_shadow.remove()
+      // menu_title_shadow.remove()
       logo_clone.remove()
       backgroundWrap.remove()
     }, 1300 )

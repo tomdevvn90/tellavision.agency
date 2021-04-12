@@ -144,30 +144,53 @@ function HomePage(props) {
       }
     }
 
+    menuItem.style.opacity = 0
+
     {
       /**
        * background panel
        */
       let backgroundWrap = document.createElement( 'DIV' )
       let backgroundAnim = document.createElement( 'DIV' )
+      let _menuTitle = document.createElement( 'DIV' )
+
+      // backgroundWrap.style.zIndex = 9
+
+      data.elems.push( backgroundWrap )
+
+      // Title 
+      _menuTitle.style.setProperty( 'color', menuTitle.style.color )
+      _menuTitle.style.setProperty( 'position', 'absolute' )
+      _menuTitle.style.setProperty( 'z-index', 1 )
+      // _menuTitle.style.setProperty( 'top', `${ menuItemPos.y - mainPos.y }px` )
+      // _menuTitle.style.setProperty( 'left', `${ menuItemPos.x - mainPos.x }px` )
+      _menuTitle.style.setProperty( 'top', `${ menuTitle.offsetTop }px` )
+      _menuTitle.style.setProperty( 'left', `${ menuTitle.offsetLeft }px` )
+      _menuTitle.style.setProperty( 'font-size', '30px' )
+      _menuTitle.style.setProperty( 'font-family', 'Playfair Display SC' )
+      _menuTitle.style.setProperty( 'transition', '1.2s' )
+      _menuTitle.style.setProperty( '-webkit-transition', '1.2s' )
+      _menuTitle.innerHTML = menu.title
 
       backgroundWrap.classList.add( 'background-shadow-wrap' )
-      backgroundWrap.style.setProperty( 'left', (menuItemLiPos.x + (menuItemLiPos.width / 2)) + 'px' )
+      backgroundWrap.style.setProperty( 'left', (menuItemLiPos.x) + 'px' )
       backgroundWrap.style.setProperty( 'top', (menuItemLiPos.y + menuItemLiPos.height) + 'px' )
 
       backgroundAnim.classList.add( 'background-shadow-anim' )
+      backgroundAnim.appendChild( _menuTitle )
 
       backgroundWrap.appendChild( backgroundAnim )
       document.body.appendChild( backgroundWrap )
 
-      data.elems.push( backgroundWrap )
-
       setTimeout( () => {
-        backgroundAnim.style.setProperty( 'left', `${ ((menuItemLiPos.x + (menuItemLiPos.width / 2)) - 15) * -1 }px` )
+        backgroundAnim.style.setProperty( 'left', `${ ((menuItemLiPos.x) - 15) * -1 }px` )
         backgroundAnim.style.setProperty( 'width', `${ root.clientWidth }px` )
         backgroundAnim.style.setProperty( 'height', `${ root.clientHeight - 15 }px` )
         backgroundAnim.style.setProperty( 'background-color', menu.background_color ) 
         // backgroundAnim.style.setProperty( 'box-shadow', `0 300px 0 0 ${ menu.background_color }` )
+
+        _menuTitle.style.setProperty( 'top', '52pt', 'important' )
+        _menuTitle.style.setProperty( 'left', `${ (main.offsetLeft - 15) + 376 }px`, 'important' )
       } )
     }
 
@@ -175,25 +198,25 @@ function HomePage(props) {
       /**
        * Title
        */
-      let title = document.createElement( 'DIV' )
-      data.elems.push( title )
+      // let title = document.createElement( 'DIV' )
+      // data.elems.push( title )
       
-      title.style.setProperty( 'color', menuTitle.style.color )
-      title.style.setProperty( 'position', 'absolute' )
-      title.style.setProperty( 'z-index', 99 )
-      title.style.setProperty( 'top', `${ menuItemPos.y - mainPos.y }px` )
-      title.style.setProperty( 'left', `${ menuItemPos.x - mainPos.x }px` )
-      title.style.setProperty( 'font-size', '30px' )
-      title.style.setProperty( 'font-family', 'Playfair Display SC' )
-      title.style.setProperty( 'transition', '1.1s cubic-bezier(.48,.05,.73,1.03)' )
-      title.style.setProperty( '-webkit-transition', '1.1s cubic-bezier(.48,.05,.73,1.03)' )
-      title.innerHTML = menu.title
-      document.querySelector( '#main' ).appendChild( title )
+      // title.style.setProperty( 'color', menuTitle.style.color )
+      // title.style.setProperty( 'position', 'absolute' )
+      // title.style.setProperty( 'z-index', 99 )
+      // title.style.setProperty( 'top', `${ menuItemPos.y - mainPos.y }px` )
+      // title.style.setProperty( 'left', `${ menuItemPos.x - mainPos.x }px` )
+      // title.style.setProperty( 'font-size', '30px' )
+      // title.style.setProperty( 'font-family', 'Playfair Display SC' )
+      // title.style.setProperty( 'transition', '1.1s cubic-bezier(.48,.05,.73,1.03)' )
+      // title.style.setProperty( '-webkit-transition', '1.1s cubic-bezier(.48,.05,.73,1.03)' )
+      // title.innerHTML = menu.title
+      // document.querySelector( '#main' ).appendChild( title )
 
-      setTimeout( () => {
-        title.style.setProperty( 'top', 'calc(52pt + 15px)', 'important' )
-        title.style.setProperty( 'left', '282pt', 'important' )
-      }, 10 )
+      // setTimeout( () => {
+      //   title.style.setProperty( 'top', 'calc(52pt + 15px)', 'important' )
+      //   title.style.setProperty( 'left', '282pt', 'important' )
+      // }, 10 )
     }
 
     {
@@ -246,7 +269,6 @@ function HomePage(props) {
                    * Clear elements
                    */
                   data.elems.map( ( el ) => { el.remove() } )
-
                   history.push( `${ menuTitle }` )
                 }, animateTime )
               } )
@@ -254,33 +276,7 @@ function HomePage(props) {
             } }
             menu={ context.primaryMenu } />
 
-          {/* <div className="primaryMenu">
-            {context.primaryMenu.map((item, index) => (
-              <div onClick={(event) => OpenMenuItem(event, item, context)}
-                className={context.selectedTabBasicDetails === null ? `menu-item menu-item-id-${ item.ID }` :
-                  ['menu-item', `menu-item-id-${ item.ID }`, 
-                    context.selectedTabBasicDetails.ID === item.ID ? 'full-menu-item' : 'small-menu-item'].join(' ')}
-                key={index}
-                style={{
-                  '--bg-color': item.background_color,
-                  fontFamily: item.header_settings.font_family,
-                  fontSize: '30px', // item.header_settings.font_size + "px",
-                  fontStyle: item.header_settings.font_style,
-                  backgroundColor: item.background_color,
-                  width: `${100 / context.primaryMenu.length}%`                  
-                }}>
-                <p
-                  className={context.selectedTabBasicDetails ? ['menu-title', 'full-menu-title'].join(' ') : 'menu-title'}
-                  style={{
-                    color: item.header_settings.text_color,
-                    opacity: index === context.primaryMenu.length - 1 ? 1 : 0
-                  }}
-                >
-                  {item.title}
-                </p>
-              </div>
-            ))}
-          </div> */}
+          
         </div>
       )}
     </MyContext.Consumer>
