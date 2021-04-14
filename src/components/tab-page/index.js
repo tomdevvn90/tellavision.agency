@@ -428,6 +428,27 @@ function TabPage(props) {
 
     // context.logo
     // document.querySelector( '#tab-page #header-logo' ).src = context.logo
+    // console.log( context.logo )
+
+    let TabLogo = document.querySelector( '#tab-page #header-logo' )
+    let TabLogoPos = TabLogo.getBoundingClientRect()
+    let _logo = document.createElement( 'IMG' )
+    _logo.src = context.logo
+    {
+      /**
+       * Make logo
+       */
+      
+      _logo.style.setProperty( 'width', `${ TabLogoPos.width }px` )
+      _logo.style.setProperty( 'left', `${ TabLogoPos.x }px` )
+      _logo.style.setProperty( 'top', `${ TabLogoPos.y }px` )
+      _logo.style.setProperty( 'padding-top', '25px' )
+      _logo.style.setProperty( 'position', 'absolute' )
+      _logo.style.setProperty( 'z-index', 9 )
+
+      document.body.appendChild( _logo )
+    }
+
     {
       /**
        * Aminate close
@@ -504,6 +525,7 @@ function TabPage(props) {
     setTimeout( () => {
       history.push( '/' );
       layer_bg_color.remove();
+      _logo.remove()
     }, 1200 )
   };
 
