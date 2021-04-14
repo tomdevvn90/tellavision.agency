@@ -458,11 +458,7 @@ function TabPage(props) {
       let menuPos = menuItem.getBoundingClientRect()
       let menuColor = menuItem.querySelector( '.menu-item.__is-current .menu-color-background' ).style.backgroundColor
       
-      if( currentMenuItem.classList.contains( 'menu-id-16' ) || currentMenuItem.classList.contains( 'menu-id-19' ) ) {
-
-      } else {
-        menuItem.style.opacity = 0
-      }
+      menuItem.style.opacity = 0
 
       /**
        * Page title 

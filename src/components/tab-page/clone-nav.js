@@ -5,8 +5,6 @@ import './clone-nav.scss'
 
 const MenuContainer = Styled.div`
   opacity: ${ props => props.show };
-  transform: ${ props => ( props.show ? `translateY(0%);` : `translateY(100%);` ) }
-  -webkit-transform: ${ props => ( props.show ? `translateY(0%);` : `translateY(100%);` ) }
   transition: .5s ease;
   -webkit-transition: .5s ease;
   `
