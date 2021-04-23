@@ -768,7 +768,7 @@ function TabPage(props) {
                       : "inherit",
                 }}
             >
-              <Link to="/" className="header_logo_img">
+              <a onClick={(event) => CloseMenuItem(event, context)} className="header_logo_img">
                 <img
                     id="header-logo"
                     src={
@@ -778,7 +778,7 @@ function TabPage(props) {
                     }
                     alt="logo"
                 />
-              </Link>
+              </a>
 
               <p
                   className="tab-title"
@@ -837,7 +837,7 @@ function TabPage(props) {
                       : context.appName}
                 </title>
               </Helmet>
-              <Link to="/" className="header_logo_img">
+              <a onClick={(event) => CloseMenuItem(event, context)} className="header_logo_img">
                 <img
                     id="header-logo"
                     src={
@@ -847,7 +847,7 @@ function TabPage(props) {
                     }
                     alt="logo"
                 />
-              </Link>
+              </a>
               <p
                   className="tab-title"
                   onClick={(event) => CloseMenuItem(event)}
@@ -919,7 +919,7 @@ function TabPage(props) {
                       : "inherit",
                 }}
             >
-              <Link to="/" className="header_logo_img">
+              <a onClick={(event) => CloseMenuItem(event, context)} className="header_logo_img">
                 <img
                     id="header-logo"
                     src={
@@ -929,7 +929,7 @@ function TabPage(props) {
                     }
                     alt="logo"
                 />
-              </Link>
+              </a>
               <p
                   className="tab-title"
                   style={{
