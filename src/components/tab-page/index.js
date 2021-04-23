@@ -5,14 +5,15 @@ import { useParams } from "react-router";
 import { useTransitionHistory } from "react-route-transition";
 import { Link } from 'react-router-dom';
 import { Helmet } from "react-helmet";
-import NavCloneforTab from './clone-nav'
-import HomeNav from '../home/home-nav'
+import { connect } from "react-redux";
 
-import APIService from "../../services";
 import "./tab-page.css";
+import NavCloneforTab from './clone-nav'
+import APIService from "../../services";
 import MyContext from "../../MyContext";
 import { ReactComponent as LeftArrow } from "../../assets/left-arrow.svg";
 import { ReactComponent as RightArrow } from "../../assets/right-arrow.svg";
+import writers from "../../store/reducers/writers";
 
 
 const TabListingItem = styled.a`
@@ -62,7 +63,7 @@ const CustomTypeContent = ({ pageContent, OpenSubmenuItem, tabListingStyle }) =>
       }}
     >
       {
-        pageContent.length > 0 && pageContent.map((formatedData, index) => (
+        pageContent.length > 0 ? pageContent.map((formatedData, index) => (
           <table key={index} style={{ display: "inline-block", textAlign: "left", verticalAlign: "top", padding: "0 10px" }}>
             <tbody>
               {formatedData.length > 0 && formatedData.map((data, index) => (
@@ -81,10 +82,12 @@ const CustomTypeContent = ({ pageContent, OpenSubmenuItem, tabListingStyle }) =>
               ))}
             </tbody>
           </table>
-        ))
+        )) : <h2>
+          Coming Soon
+        </h2>
       }
     </div>)
-}
+};
 
 const AboutUsPageContent = ({ pageContent, subPageContent, getMenuItemContent }) => {
   return (<div
@@ -153,11 +156,40 @@ function TabPage(props) {
   const [pageData, setPageData] = useState({});
   const [previousPageData, setPreviousPageData] = useState({});
   const [nextPageData, setNextPageData] = useState({});
+  const [mainTabContent, setMainTabContent] = useState([]);
 
   const [backgroundColor, setBackgroundColor] = useState( sharedData?.selectedTabBasicDetails?.background_color );
   const [switchMenu, setSwitchMenu] = useState( false )
   
   const history = useTransitionHistory();
+
+  const {visuals, writers, storyboards, graphicDesign, europeanTalent, corporate} = props;
+
+  useEffect(() => {
+    switch (menuTitle) {
+      case 'visuals':
+        setMainTabContent(formateTabData(visuals.data));
+        break;
+      case 'writers':
+        setMainTabContent(formateTabData(writers.data));
+        break;
+      case 'storyboards':
+        setMainTabContent(formateTabData(storyboards.data));
+        break;
+      case 'graphic-design':
+        setMainTabContent(formateTabData(graphicDesign.data));
+        break;
+      case 'european-talent':
+        setMainTabContent(formateTabData(europeanTalent.data));
+        break;
+      case 'corporate':
+        setMainTabContent(formateTabData(corporate.data));
+        break;
+      default:
+        setMainTabContent([]);
+    }
+
+  }, [menuTitle, visuals, corporate, writers, storyboards, graphicDesign, europeanTalent]);
 
   useEffect( () => {
     const updateBackgroundColor = () => {
@@ -165,7 +197,7 @@ function TabPage(props) {
         setBackgroundColor( tabBasicDetails?.background_color ) 
     }
     setTimeout( updateBackgroundColor, 900 )
-  }, [ switchMenu ] )
+  }, [ switchMenu ] );
 
   // Fetch all required data from API
   useEffect(() => {
@@ -604,23 +636,23 @@ function TabPage(props) {
         let selectedMenu = { ...menu, ...{ 'prev_menu': prevMenu }, ...{ 'next_menu': nextMenu } }
         setTabBasicDetails(selectedMenu);
         // console.log(selectedMenu);
-        if (action === "next") {
-          setPreviousTabContent(tabContent);
-          setTabContent(nextTabContent);
-        } else {
-          setNextTabContent(tabContent);
-          setTabContent(previousTabContent);
-        }
+        // if (action === "next") {
+        //   setPreviousTabContent(tabContent);
+        //   setTabContent(nextTabContent);
+        // } else {
+        //   setNextTabContent(tabContent);
+        //   setTabContent(previousTabContent);
+        // }
 
         // setTabContent(mainContent);
         sharedData.setSelectedTabBasicDetails(selectedMenu);
       }
-    })
+    });
 
     let updatedMenuTitle = menuDetails.title.toLowerCase().replace(' ', '-');
     removeSliderAnimation();
     history.push(updatedMenuTitle);
-  }
+  };
 
   const fixNextPrevEffect = ( menuItem ) => {
     let shadowElement = document.createElement( 'DIV' )
@@ -727,228 +759,228 @@ function TabPage(props) {
   return (
     <MyContext.Consumer>
       {(context) => (
-        <div className="tab-container" style={{ height: '100%', position: 'relative' }}>
-          <div
-            id="prev-page"
-            style={{
-              backgroundColor: tabBasicDetails && tabBasicDetails.prev_menu
-                ? tabBasicDetails.prev_menu.background_color
-                : "inherit",
-            }}
-          >
-            <Link to="/" className="header_logo_img">
-              <img
-                id="header-logo"
-                src={
-                  tabBasicDetails && tabBasicDetails.prev_menu.select_logo_color === "White"
-                    ? context.whiteLogo
-                    : context.logo
-                }
-                alt="logo"
-              />
-            </Link>
+          <div className="tab-container" style={{ height: '100%', position: 'relative' }}>
+            <div
+                id="prev-page"
+                style={{
+                  backgroundColor: tabBasicDetails && tabBasicDetails.prev_menu
+                      ? tabBasicDetails.prev_menu.background_color
+                      : "inherit",
+                }}
+            >
+              <Link to="/" className="header_logo_img">
+                <img
+                    id="header-logo"
+                    src={
+                      tabBasicDetails && tabBasicDetails.prev_menu.select_logo_color === "White"
+                          ? context.whiteLogo
+                          : context.logo
+                    }
+                    alt="logo"
+                />
+              </Link>
 
-            <p
-              className="tab-title" 
-              style={{
-                color: tabBasicDetails ? tabBasicDetails.prev_menu.header_settings.text_color : 'inherit',
-                fontFamily:
-                  tabBasicDetails ? tabBasicDetails.prev_menu.header_settings.font_family : 'inherit',
-                fontSize:
-                  '30px', // tabBasicDetails ? tabBasicDetails.prev_menu.header_settings.font_size +
+              <p
+                  className="tab-title"
+                  style={{
+                    color: tabBasicDetails ? tabBasicDetails.prev_menu.header_settings.text_color : 'inherit',
+                    fontFamily:
+                        tabBasicDetails ? tabBasicDetails.prev_menu.header_settings.font_family : 'inherit',
+                    fontSize:
+                        '30px', // tabBasicDetails ? tabBasicDetails.prev_menu.header_settings.font_size +
                     "px" : 'inherit',
-                fontStyle:
-                  tabBasicDetails ? tabBasicDetails.prev_menu.header_settings.font_style : 'inherit',
-              }}
+                    fontStyle:
+                        tabBasicDetails ? tabBasicDetails.prev_menu.header_settings.font_style : 'inherit',
+                  }}
+              >
+                {tabBasicDetails ? tabBasicDetails.prev_menu.title : ''}
+              </p>
+
+              {
+                previousTabType === "custom" &&
+                <CustomTypeContent
+                    pageContent={previousTabContent}
+                    tabListingStyle={context.tabListingStyle}
+                    OpenSubmenuItem={OpenSubmenuItem}
+                />
+              }
+
+              {
+                previousTabType === "page" && previousTabID === "13" &&
+                <AboutUsPageContent
+                    pageContent={previousTabContent}
+                    subPageContent={previousPageData}
+                    getMenuItemContent={getMenuItemContent}
+                />
+
+              }
+
+              {
+                previousTabType === "page" && previousTabID !== "13" && previousTabContent &&
+                <PageTypeContent pageContent={previousTabContent} />
+              }
+
+            </div>
+
+            <div
+                id="tab-page"
+                style={{
+                  background: backgroundColor,
+                  boxShadow: `-50vw 0px 0px 0 ${ backgroundColor }, 50vw 0px 0px 0 ${ backgroundColor }`
+                }}
             >
-              {tabBasicDetails ? tabBasicDetails.prev_menu.title : ''}
-            </p>
-
-            {
-              previousTabType === "custom" &&
-              <CustomTypeContent
-                pageContent={previousTabContent}
-                tabListingStyle={context.tabListingStyle}
-                OpenSubmenuItem={OpenSubmenuItem}
-              ></CustomTypeContent>
-            }
-
-            {
-              previousTabType === "page" && previousTabID === "13" &&
-              <AboutUsPageContent
-                pageContent={previousTabContent}
-                subPageContent={previousPageData}
-                getMenuItemContent={getMenuItemContent}
-              ></AboutUsPageContent>
-
-            }
-
-            {
-              previousTabType === "page" && previousTabID !== "13" && previousTabContent &&
-              <PageTypeContent pageContent={previousTabContent} ></PageTypeContent>
-            }
-
-          </div>
-
-          <div
-            id="tab-page"
-            style={{
-              background: backgroundColor,
-              boxShadow: `-50vw 0px 0px 0 ${ backgroundColor }, 50vw 0px 0px 0 ${ backgroundColor }`
-            }}
-          >
-            <Helmet>
-              <title>
-                {tabBasicDetails
-                  ? context.appName + " | " +
-                  tabBasicDetails.title
-                  : context.appName}
-              </title>
-            </Helmet>
-            <Link to="/" className="header_logo_img">
-              <img
-                id="header-logo"
-                src={
-                  tabBasicDetails && tabBasicDetails.select_logo_color === "White"
-                    ? context.whiteLogo
-                    : context.logo
-                }
-                alt="logo"
-              />
-            </Link>
-            <p
-              className="tab-title"
-              onClick={(event) => CloseMenuItem(event)}
-              style={{
-                color: tabBasicDetails ? tabBasicDetails.header_settings.text_color : 'inherit',
-                fontFamily:
-                  tabBasicDetails ? tabBasicDetails.header_settings.font_family : 'inherit',
-                fontSize:
-                  '30px', //tabBasicDetails ? tabBasicDetails.header_settings.font_size +
+              <Helmet>
+                <title>
+                  {tabBasicDetails
+                      ? context.appName + " | " +
+                      tabBasicDetails.title
+                      : context.appName}
+                </title>
+              </Helmet>
+              <Link to="/" className="header_logo_img">
+                <img
+                    id="header-logo"
+                    src={
+                      tabBasicDetails && tabBasicDetails.select_logo_color === "White"
+                          ? context.whiteLogo
+                          : context.logo
+                    }
+                    alt="logo"
+                />
+              </Link>
+              <p
+                  className="tab-title"
+                  onClick={(event) => CloseMenuItem(event)}
+                  style={{
+                    color: tabBasicDetails ? tabBasicDetails.header_settings.text_color : 'inherit',
+                    fontFamily:
+                        tabBasicDetails ? tabBasicDetails.header_settings.font_family : 'inherit',
+                    fontSize:
+                        '30px', //tabBasicDetails ? tabBasicDetails.header_settings.font_size +
                     "px" : 'inherit',
-                fontStyle:
-                  tabBasicDetails ? tabBasicDetails.header_settings.font_style : 'inherit',
-              }}
-            >
-              {tabBasicDetails ? tabBasicDetails.title : ''}             
-            </p>
-            <div className="close_right">
-            <a
-              className="close-btn"
-              onClick={(event) => CloseMenuItem(event, context)}
-            >
-              X
-          </a>
-          </div>
+                    fontStyle:
+                        tabBasicDetails ? tabBasicDetails.header_settings.font_style : 'inherit',
+                  }}
+              >
+                {tabBasicDetails ? tabBasicDetails.title : ''}
+              </p>
+              <div className="close_right">
+                <a
+                    className="close-btn"
+                    onClick={(event) => CloseMenuItem(event, context)}
+                >
+                  X
+                </a>
+              </div>
 
           
-            <button className={(tabBasicDetails && tabBasicDetails.ID === 16) ? ['prev_btn', 'about_prev_next_btn'].join(' ') : 'prev_btn'} onClick={(event) => prevBtn(event, tabBasicDetails.prev_menu)}
-              style={{ display: tabBasicDetails && tabBasicDetails.prev_menu != "" ? 'block' : 'none', fill: tabBasicDetails ? tabBasicDetails.prev_menu.background_color : 'inherit' }}
+              <button className={(tabBasicDetails && tabBasicDetails.ID === 16) ? ['prev_btn', 'about_prev_next_btn'].join(' ') : 'prev_btn'} onClick={(event) => prevBtn(event, tabBasicDetails.prev_menu)}
+                      style={{ display: tabBasicDetails && tabBasicDetails.prev_menu !== "" ? 'block' : 'none', fill: tabBasicDetails ? tabBasicDetails.prev_menu.background_color : 'inherit' }}
+              >
+                <LeftArrow />
+              </button>
+              <br />
+              <button className={(tabBasicDetails && tabBasicDetails.ID === 16) ? ['next_btn', 'about_prev_next_btn'].join(' ') : 'next_btn'} onClick={(event) => nextBtn(event, tabBasicDetails.next_menu)}
+                      style={{ display: tabBasicDetails && tabBasicDetails.next_menu !== "" ? 'block' : 'none', fill: tabBasicDetails ? tabBasicDetails.next_menu.background_color : 'inherit' }}
+              >
+                <RightArrow />
+              </button>
+
+              {
+                currentTabType === "custom" &&
+                <CustomTypeContent
+                    pageContent={mainTabContent}
+                    tabListingStyle={context.tabListingStyle}
+                    OpenSubmenuItem={OpenSubmenuItem}
+                />
+              }
+
+              {
+                currentTabType === "page" && currentTabID === "13" &&
+                <AboutUsPageContent
+                    pageContent={tabContent}
+                    subPageContent={pageData}
+                    getMenuItemContent={getMenuItemContent}
+                />
+
+              }
+
+              {
+                currentTabType === "page" && currentTabID !== "13" && tabContent &&
+                <PageTypeContent pageContent={tabContent} />
+              }
+            </div>
+
+            <div
+                id="next-page"
+                style={{
+                  backgroundColor: tabBasicDetails && tabBasicDetails.next_menu
+                      ? tabBasicDetails.next_menu.background_color
+                      : "inherit",
+                }}
             >
-              <LeftArrow />
-            </button>
-            <br />
-            <button className={(tabBasicDetails && tabBasicDetails.ID === 16) ? ['next_btn', 'about_prev_next_btn'].join(' ') : 'next_btn'} onClick={(event) => nextBtn(event, tabBasicDetails.next_menu)}
-              style={{ display: tabBasicDetails && tabBasicDetails.next_menu != "" ? 'block' : 'none', fill: tabBasicDetails ? tabBasicDetails.next_menu.background_color : 'inherit' }}
-            >
-              <RightArrow />
-            </button>
-
-            {
-              currentTabType === "custom" &&
-              <CustomTypeContent
-                pageContent={tabContent}
-                tabListingStyle={context.tabListingStyle}
-                OpenSubmenuItem={OpenSubmenuItem}
-              ></CustomTypeContent>
-            }
-
-            {
-              currentTabType === "page" && currentTabID === "13" &&
-              <AboutUsPageContent
-                pageContent={tabContent}
-                subPageContent={pageData}
-                getMenuItemContent={getMenuItemContent}
-              ></AboutUsPageContent>
-
-            }
-
-            {
-              currentTabType === "page" && currentTabID !== "13" && tabContent &&
-              <PageTypeContent pageContent={tabContent} ></PageTypeContent>
-            }
-          </div>
-
-          <div
-            id="next-page"
-            style={{
-              backgroundColor: tabBasicDetails && tabBasicDetails.next_menu
-                ? tabBasicDetails.next_menu.background_color
-                : "inherit",
-            }}
-          >
-            <Link to="/" className="header_logo_img">
-              <img
-                id="header-logo"
-                src={
-                  tabBasicDetails && tabBasicDetails.next_menu.select_logo_color === "White"
-                    ? context.whiteLogo
-                    : context.logo
-                }
-                alt="logo"
-              />
-            </Link>
-            <p
-              className="tab-title"
-              style={{
-                color: tabBasicDetails ? tabBasicDetails.next_menu.header_settings.text_color : 'inherit',
-                fontFamily:
-                  tabBasicDetails ? tabBasicDetails.next_menu.header_settings.font_family : 'inherit',
-                fontSize:
-                  '30px', // tabBasicDetails ? tabBasicDetails.next_menu.header_settings.font_size +
+              <Link to="/" className="header_logo_img">
+                <img
+                    id="header-logo"
+                    src={
+                      tabBasicDetails && tabBasicDetails.next_menu.select_logo_color === "White"
+                          ? context.whiteLogo
+                          : context.logo
+                    }
+                    alt="logo"
+                />
+              </Link>
+              <p
+                  className="tab-title"
+                  style={{
+                    color: tabBasicDetails ? tabBasicDetails.next_menu.header_settings.text_color : 'inherit',
+                    fontFamily:
+                        tabBasicDetails ? tabBasicDetails.next_menu.header_settings.font_family : 'inherit',
+                    fontSize:
+                        '30px', // tabBasicDetails ? tabBasicDetails.next_menu.header_settings.font_size +
                     "px" : 'inherit',
-                fontStyle:
-                  tabBasicDetails ? tabBasicDetails.next_menu.header_settings.font_style : 'inherit',
-              }}
-            >
-              {tabBasicDetails ? tabBasicDetails.next_menu.title : ''}
-            </p>
+                    fontStyle:
+                        tabBasicDetails ? tabBasicDetails.next_menu.header_settings.font_style : 'inherit',
+                  }}
+              >
+                {tabBasicDetails ? tabBasicDetails.next_menu.title : ''}
+              </p>
 
-            {
-              nextTabType === "custom" &&
-              <CustomTypeContent
-                pageContent={nextTabContent}
-                tabListingStyle={context.tabListingStyle}
-                OpenSubmenuItem={OpenSubmenuItem}
-              ></CustomTypeContent>
-            }
+              {
+                nextTabType === "custom" &&
+                <CustomTypeContent
+                    pageContent={nextTabContent}
+                    tabListingStyle={context.tabListingStyle}
+                    OpenSubmenuItem={OpenSubmenuItem}
+                />
+              }
 
-            {
-              nextTabType === "page" && nextTabID === "13" &&
-              <AboutUsPageContent
-                pageContent={nextTabContent}
-                subPageContent={nextPageData}
-                getMenuItemContent={getMenuItemContent}
-              ></AboutUsPageContent>
+              {
+                nextTabType === "page" && nextTabID === "13" &&
+                <AboutUsPageContent
+                    pageContent={nextTabContent}
+                    subPageContent={nextPageData}
+                    getMenuItemContent={getMenuItemContent}
+                />
 
-            }
+              }
 
-            {
-              nextTabType === "page" && nextTabID !== "13" && nextTabContent &&
-              <PageTypeContent pageContent={nextTabContent} ></PageTypeContent>
-            }
+              {
+                nextTabType === "page" && nextTabID !== "13" && nextTabContent &&
+                <PageTypeContent pageContent={nextTabContent} />
+              }
 
-          </div>
-          <NavCloneforTab 
-            onUpdateTab={ ( menu ) => {
-              context.setSelectedTabBasicDetails( menu )
-              setTabBasicDetails( menu )
-              setSwitchMenu( ! switchMenu )
-            } }
-            currentMenu={ tabBasicDetails } 
-            menu={ sharedData.primaryMenu } />
+            </div>
+            <NavCloneforTab
+                onUpdateTab={ ( menu ) => {
+                  context.setSelectedTabBasicDetails( menu )
+                  setTabBasicDetails( menu )
+                  setSwitchMenu( ! switchMenu )
+                } }
+                currentMenu={ tabBasicDetails }
+                menu={ sharedData.primaryMenu } />
           
-          {/* <HomeNav 
+            {/* <HomeNav
             appContext={ context }
             onUpdateTab={ ( menu ) => {
               context.setSelectedTabBasicDetails( menu )
@@ -956,10 +988,22 @@ function TabPage(props) {
               setSwitchMenu( ! switchMenu )
             } }
             menu={ context.primaryMenu } /> */}
-        </div>
+          </div>
       )}
     </MyContext.Consumer>
   );
 }
 
-export default TabPage;
+const mapStateToProps = state => ({
+  visuals: state.visuals,
+  writers: state.writers,
+  storyboards: state.storyboards,
+  graphicDesign: state.graphicDesign,
+  europeanTalent: state.europeanTalent,
+  corporate: state.corporate,
+});
+
+const mapDispatchToProps = {
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TabPage);
