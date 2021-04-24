@@ -569,9 +569,9 @@ function TabPage(props) {
     let nextPage = document.getElementById('next-page');
     let previousPage = document.getElementById('prev-page');
 
-    tabPage.style.transition = 'all 0.5s';
-    nextPage.style.transition = 'all 0.5s';
-    previousPage.style.transition = 'all 0.5s';
+    tabPage.style.transition = 'all 2s';
+    nextPage.style.transition = 'all 2s';
+    previousPage.style.transition = 'all 2s';
 
     tabPage.style.width = '100%';
     tabPage.style.opacity = 1;
