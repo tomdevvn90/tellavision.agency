@@ -15,6 +15,8 @@ import withAutoplay from 'react-awesome-slider/dist/autoplay';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import 'react-awesome-slider/dist/styles.css';
+import { ReactComponent as SubLeftArrow } from "../../assets/sub-left-arrow.svg";
+import { ReactComponent as SubRightArrow } from "../../assets/sub-right-arrow.svg";
 const SubMenuTitle = styled.div`
   display: inline-block;
   padding-right:30px;
@@ -347,9 +349,10 @@ function SubTabPage(props) {
                       renderArrowPrev={(onClickHandler, hasPrev) =>                   
                        hasPrev && (
                             <button type="button" className="control-prev" onClick={onClickHandler} >
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 33" width="34" height="33">       
+                                {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 33" width="34" height="33">       
                                   <path id="&lt;" fill={sliderArrowColor} class="shp0" d="M33.94 33.11L2.36 19.88L2.36 13.37L33.94 0.1L33.94 4.99L6.71 16.61L33.94 28.26L33.94 33.11ZM32.23 33.11L0.65 19.88L0.65 13.37L32.23 0.1L32.23 4.99L5 16.61L32.23 28.26L32.23 33.11Z" />
-                                </svg>                              
+                                </svg> */}
+                                <SubRightArrow/>
                             </button>
                         )
                       }
@@ -357,9 +360,11 @@ function SubTabPage(props) {
                     renderArrowNext={(onClickHandler, hasNext) =>
                         hasNext && (
                             <button type="button" className="control-next" onClick={onClickHandler} >
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 33" width="34" height="33">        
+                                {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 33" width="34" height="33">        
                                   <path id="&lt;" fill={sliderArrowColor} class="shp0" d="M33.94 33.11L2.36 19.88L2.36 13.37L33.94 0.1L33.94 4.99L6.71 16.61L33.94 28.26L33.94 33.11ZM32.23 33.11L0.65 19.88L0.65 13.37L32.23 0.1L32.23 4.99L5 16.61L32.23 28.26L32.23 33.11Z" />
-                                </svg>
+                                </svg> */}
+
+                           <SubRightArrow/>
                             </button>
                         )
                     }
@@ -418,6 +423,7 @@ function SubTabPage(props) {
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 33" width="34" height="33">        
                                   <path id="&lt;" fill={sliderArrowColor} class="shp0" d="M33.94 33.11L2.36 19.88L2.36 13.37L33.94 0.1L33.94 4.99L6.71 16.61L33.94 28.26L33.94 33.11ZM32.23 33.11L0.65 19.88L0.65 13.37L32.23 0.1L32.23 4.99L5 16.61L32.23 28.26L32.23 33.11Z" />
                                 </svg>
+                               
                             </button>
                         )
                     }
