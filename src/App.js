@@ -8,10 +8,11 @@ import TabPage from "./components/tab-page";
 import SubTabPage from "./components/sub-tab-page";
 import MyProvider from "./MyProvider";
 import { getPageData } from './store/actions/actions';
+import Loader from "./components/loader";
 
 
 import "./App.css";
-// import Loader from "./components/loader";
+// import loader from "./components/loader";
 
 function App(props) {
     const {getPageData} = props;
@@ -26,7 +27,7 @@ function App(props) {
     return (
       <MyProvider>
         <div id="main">
-          {/*<Loader/>*/}
+          <Loader/>
             <Router>
               <RouteTransitionProvider>
                 <Route path="/" exact>
