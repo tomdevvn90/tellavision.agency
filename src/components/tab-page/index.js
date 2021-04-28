@@ -216,7 +216,7 @@ function TabPage(props) {
         console.log("Error in fetching current tab content: " + error);
         setTabContent([]);
         setPageData({});
-        setCurrentTabType("");
+        // setCurrentTabType("");
         setCurrentTabId("");
       } )
 
@@ -288,7 +288,7 @@ function TabPage(props) {
                   console.log("Error in fetching current tab content: " + error);
                   setTabContent([]);
                   setPageData({});
-                  setCurrentTabType("");
+                  // setCurrentTabType("");
                   setCurrentTabId("");
                 })
 
@@ -333,7 +333,7 @@ function TabPage(props) {
           if (!sliderAnimation) setSliderAnimation();
           setPreviousTabType("");
           setNextTabType("");
-          setCurrentTabType("");
+          // setCurrentTabType("");
           setPreviousTabId("");
           setNextTabId("");
           setCurrentTabId("");
