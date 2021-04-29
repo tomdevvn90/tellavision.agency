@@ -683,7 +683,7 @@ function TabPage(props) {
     tabPage.style.width = '0%';
     nextPage.style.opacity = 1;
     nextPage.style.width = '100%';
-    event.target.closest('button').style.display="none";
+    // event.target.closest('button').style.display="none";
     
     let shadow_background = fixNextPrevEffect( menuDetails )
 
@@ -709,13 +709,13 @@ function TabPage(props) {
     let tabPage = document.getElementById('tab-page');
     let previousPage = document.getElementById('prev-page');
 
-    previousPage.classList.add( '__in-animate' )
+    previousPage.classList.add( '__in-animate' );
 
     tabPage.style.width = '0%';
     tabPage.style.opacity = 0;
     previousPage.style.width = '100%';
     previousPage.style.opacity = 1;
-    event.target.closest('button').style.display="none";
+    // event.target.closest('button').style.display="none";
 
     let shadow_background = fixNextPrevEffect( menuDetails )
 
@@ -875,7 +875,7 @@ function TabPage(props) {
 
           
               <button className={(tabBasicDetails && tabBasicDetails.ID === 16) ? ['prev_btn', 'about_prev_next_btn'].join(' ') : 'prev_btn'} onClick={(event) => prevBtn(event, tabBasicDetails.prev_menu)}
-                      style={{ display: tabBasicDetails && tabBasicDetails.prev_menu !== "" ? 'block' : 'none', fill: tabBasicDetails ? tabBasicDetails.prev_menu.background_color : 'inherit' }}
+                      style={{ display: 'block', fill: tabBasicDetails ? tabBasicDetails.prev_menu.background_color : 'inherit' }}
               >
                 <LeftArrow />
               </button>
