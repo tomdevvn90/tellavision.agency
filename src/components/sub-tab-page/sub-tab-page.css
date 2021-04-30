@@ -4,6 +4,10 @@
   height: 100%;
   position: relative;
 }
+#portfolio .carousel .slide iframe {
+
+  height: 460px;
+}
 .carousel-slider button svg path {
   fill: #fff;
 }
@@ -11,7 +15,7 @@
   left: 0;
 }
 .carousel .slider-wrapper {
-  width: calc(100% - 68px)!important;
+  width: calc(100% - 85px)!important;
 }
 .carousel.carousel-slider button {
   position: absolute;
