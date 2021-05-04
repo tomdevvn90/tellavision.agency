@@ -82,9 +82,9 @@ const CustomTypeContent = ({ pageContent, OpenSubmenuItem, tabListingStyle }) =>
               ))}
             </tbody>
           </table>
-        )) : <TabListingItem tabListingStyle={tabListingStyle} href="#">
-          Coming Soon
-        </TabListingItem>
+        )) : <p className='coming-soon-text'>
+          COMING SOON...
+        </p>
       }
     </div>)
 };

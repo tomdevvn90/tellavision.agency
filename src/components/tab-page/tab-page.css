@@ -234,3 +234,8 @@ a.header_logo_img.__clone-logo img {
   max-width: 100% !important;
   box-sizing: border-box; 
 }
+.coming-soon-text {
+  font-family: "Playfair Display SC";
+  font-size: 45px;
+  text-align: center;
+}
