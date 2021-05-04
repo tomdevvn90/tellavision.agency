@@ -8,9 +8,20 @@
 
   height: 460px;
 }
-.carousel-slider button svg path {
+.white-control-prev svg path {
   fill: #fff;
 }
+.black-control-prev svg path {
+  fill: #000;
+}
+
+.white-control-next svg path {
+  fill: #fff;
+}
+.black-control-next svg path {
+  fill: #000;
+}
+
 .carousel.carousel-slider .control-prev {
   left: 0;
 }
