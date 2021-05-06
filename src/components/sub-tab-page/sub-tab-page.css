@@ -82,9 +82,12 @@
   /*padding-left: 90px;*/
   /*display: inline-flex;*/
   /*align-items: center;*/
-  padding-left: 55px;
+  padding-left: 90px;
+  display: -webkit-inline-flex;
   display: inline-flex;
+  -webkit-align-items: center;
   align-items: center;
+  width: 100%;
 }
 #sub-tab-page #portfolio {
   position: relative;
@@ -98,9 +101,10 @@
 }
 #sub-tab-page .post_list_item ul {
   /* FWDNTIPIRF-20 | 23-11-2020 | Category title css change | Start  */
-  padding-left: 0;
+  /*padding-left: 0;*/
   /* FWDNTIPIRF-20 | 23-11-2020 | Category title css change | End  */
   margin: 0;
+  padding-left: 90px;
 }
 #sub-tab-page #featured-media {
   padding-left: 20% !important;
@@ -124,9 +128,12 @@
 }
 #sub-tab-page .post_list_item {
   /* FWDNTIPIRF-20 | 23-11-2020 | Category title css change | Start  */
+  display: -webkit-flex;
   display: flex;
   width: 20%;
-  justify-content: center;
+  -webkit-justify-content: unset;
+  justify-content: unset;
+  /* padding-left: 0px; */
   /* FWDNTIPIRF-20 | 23-11-2020 | Category title css change | End  */
 }
 
