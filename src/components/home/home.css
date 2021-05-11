@@ -90,7 +90,7 @@ body:after {
   width: 100% !important;
 }
 .full-menu-item .full-menu-title {
-  position: absolute !important; 
+  position: absolute !important;
   left: 282pt !important;
   top: 52pt !important;
   opacity: 1 !important;
@@ -131,7 +131,7 @@ img {
 }
 #main {
   padding: 15px 0 0;
-  position: relative; 
+  position: relative;
   /* overflow: hidden; */
   display: block;
   width: 85%;
@@ -274,7 +274,7 @@ img {
 .full-box-shadow {
   /* box-shadow: 0 0 0 100vw var(--bg-color); */
   position: relative;
-} 
+}
 
 @keyframes __scaleEffectBg {
   from {
@@ -291,7 +291,7 @@ img {
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%; 
+  height: 100%;
   background-color: var(--bg-color);
   animation: __scaleEffectBg 6s;
   -webkit-animation: __scaleEffectBg 6s;

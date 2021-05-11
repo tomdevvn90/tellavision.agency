@@ -1,0 +1,117 @@
+@font-face {
+    font-family: 'FormaDJRBanner';
+    src: url('FormaDJRBanner-Medium.woff2') format('woff2'),
+        url('FormaDJRBanner-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FormaDJRBanner';
+    src: url('FormaDJRBanner-Light.woff2') format('woff2'),
+        url('FormaDJRBanner-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FormaDJRBanner';
+    src: url('FormaDJRBanner-Regular.woff2') format('woff2'),
+        url('FormaDJRBanner-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FormaDJRDeck';
+    src: url('FormaDJRDeck-Light.woff2') format('woff2'),
+        url('FormaDJRDeck-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FormaDJRDeck';
+    src: url('FormaDJRDeck-Medium.woff2') format('woff2'),
+        url('FormaDJRDeck-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FormaDJRText';
+    src: url('FormaDJRText-Light.woff2') format('woff2'),
+        url('FormaDJRText-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FormaDJRDeck';
+    src: url('FormaDJRDeck-Regular.woff2') format('woff2'),
+        url('FormaDJRDeck-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GT-Super-Display';
+    src: url('GTSuperDsTrial-Rg.woff2') format('woff2'),
+        url('GTSuperDsTrial-Rg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GT-Super-Display';
+    src: url('GTSuperDsTrial-Md.woff2') format('woff2'),
+        url('GTSuperDsTrial-Md.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GT-Super-Display';
+    src: url('GTSuperDsTrial-Lt.woff2') format('woff2'),
+        url('GTSuperDsTrial-Lt.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FormaDJRText';
+    src: url('FormaDJRText-Light.woff2') format('woff2'),
+        url('FormaDJRText-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FormaDJRText';
+    src: url('FormaDJRText-Medium.woff2') format('woff2'),
+        url('FormaDJRText-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FormaDJRText';
+    src: url('FormaDJRText-Medium.woff2') format('woff2'),
+        url('FormaDJRText-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
