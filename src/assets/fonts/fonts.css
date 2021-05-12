@@ -115,3 +115,7 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: "NodeDisplay-ExtraLight";
+    src: url('NodeDisplayExtraLight.woff2') format('woff2'), url('NodeDisplayExtraLight.woff') format('woff');
+  }
