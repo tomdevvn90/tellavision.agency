@@ -7,7 +7,7 @@ import {getInitialData} from "./store/actions/get-initial-data";
 import Loader from './components/Loader/index'
 import './App.css';
 import HomePage from './components/Home/Nav'
-import TabPage from './components/TabPage'
+import TabPage from './components/TabPage/TabPage'
 import {RootReducer} from "./store/reducers";
 import {getMenusData} from "./store/actions/get-menus-data";
 import {getAboutPageTabContent} from "./store/actions/get-about-page-Tab-content";

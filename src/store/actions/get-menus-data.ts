@@ -28,18 +28,20 @@ export const getMenusData = (menuList: MenuItem[]) => async (dispatch: (action: 
     });
     console.log(menus);
     const data: MenuDataContainer = {};
-    for(const menuItem of menus) {
+    for(const menuItem of menuList) {
         if (menuItem.type === 'custom') {
             let counter = 0;
             while (true) {
                 try {
-                    let title = menuItem.title;
+                    let title = menuItem.post_name;
+                    if (title === 'corporate') {
+                        title = 'corporates'
+                    } else if (title === 'home') {
+                        title = 'visuals'
+                    }
                     const res = await client.fetchMenuItemMainPageData(title);
                     const x = res.data;
-                    if (title === 'corporates') {
-                        title = 'corporate'
-                    }
-                    data[title] = x;
+                    data[menuItem.post_name] = x;
                     break;
                 } catch (e) {
                     if (counter >=3) {
