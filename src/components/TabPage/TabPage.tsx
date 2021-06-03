@@ -2,14 +2,14 @@ import Tab from './Tab';
 import {useDispatch, useSelector} from "react-redux";
 import {RootReducer} from "../../store/reducers";
 import {useParams} from "react-router";
-import {motion} from "framer-motion";
 import {ActionTypes} from "../../store/actions/action-types";
 import {Action} from "../../@types/redux-types";
 import {useTransitionHistory} from "react-route-transition";
 import {MenuItem} from "../../@types/primary-menu";
 // import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
+import {Carousel} from 'react-responsive-carousel';
 import "./tab-page.css";
+import {useEffect, useState} from "react";
 
 const TabPage: React.FC = () => {
     const primaryMenus = useSelector((state: RootReducer) => state.landData.menus)?.data;
@@ -20,6 +20,38 @@ const TabPage: React.FC = () => {
     const dispatch = useDispatch<(action: Action) => void>();
 
     const history = useTransitionHistory();
+    const [selectedPage, setSelectedPage] = useState<number>(1);
+
+    useEffect(() => {
+        switch (menuTitle) {
+            case 'visuals':
+                setSelectedPage(0);
+                break;
+            case 'writers':
+                setSelectedPage(1);
+                break;
+            case 'storyboards':
+                setSelectedPage(2);
+                break;
+            case 'graphic-design':
+                setSelectedPage(3);
+                break;
+            case 'european-talent':
+                setSelectedPage(4);
+                break;
+            case 'corporate':
+                setSelectedPage(5);
+                break;
+            case 'about-us':
+                setSelectedPage(6);
+                break;
+            case 'contact':
+                setSelectedPage(7);
+                break;
+            default:
+                setSelectedPage(0);
+        }
+    }, []);
 
     const nextBtn = (event: Event, menuItem: MenuItem) => {
         event.preventDefault();
@@ -41,6 +73,10 @@ const TabPage: React.FC = () => {
             history.push(`/${getUrl(menuItem)}`)
         }
     };
+
+    useEffect(() => {
+        console.log(selectedPage);
+    }, [selectedPage]);
 
     const prevBtn = (event: Event, menuItem: MenuItem) => {
         event.preventDefault();
@@ -81,11 +117,15 @@ const TabPage: React.FC = () => {
         const menu = data.props.children.props.menu;
         // console.log(data);
         console.log(index);
+        dispatch({
+            type: ActionTypes.SET_SELECTED_TAB_BASIC_DETAILS,
+            payload: menu
+        });
         history.push(`/${getUrl(menu)}`)
     }
 
     return(<>
-        <Carousel onChange={handleChange}>
+        <Carousel onChange={handleChange} selectedItem={selectedPage}>
             {primaryMenus?.items.map((menuItem) => (
                 <div>
                     <Tab menu={menuItem} menuData={ menuData.tabData ? menuData.tabData[menuItem.post_name] : null } prevBtn={prevBtn} nextBtn={nextBtn}/>
