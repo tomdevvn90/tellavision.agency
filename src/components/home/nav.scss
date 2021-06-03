@@ -18,7 +18,7 @@
 }
 
 @keyframes scaleAnimate {
-  from {
+  form {
     width: 100%;
     height: 100%;
     transform: scale(1);
@@ -47,7 +47,7 @@
       justify-content: center;
       height: var(--height-value);
       width: calc(100% / var(--total-nav-item));
-
+      
       .menu-color-background {
         position: absolute;
         left: 0;
@@ -156,4 +156,4 @@
   height: 0;
   transition: width 1.2s ease, height 1.2s ease, left 1.2s ease;
   -webkit-transition: width 1.2s ease, height 1.2s ease, left 1.2s ease;
-}
+} 
