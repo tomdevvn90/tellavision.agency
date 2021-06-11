@@ -44,19 +44,19 @@
 }
 
 @font-face {
-    font-family: 'FormaDJRText';
-    src: url('FormaDJRText-Light.woff2') format('woff2'),
-        url('FormaDJRText-Light.woff') format('woff');
-    font-weight: 300;
+    font-family: 'FormaDJRDeck';
+    src: url('FormaDJRDeck-Regular.woff2') format('woff2'),
+        url('FormaDJRDeck-Regular.woff') format('woff');
+    font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'FormaDJRDeck';
-    src: url('FormaDJRDeck-Regular.woff2') format('woff2'),
-        url('FormaDJRDeck-Regular.woff') format('woff');
-    font-weight: normal;
+    font-family: 'FormaDJRText';
+    src: url('FormaDJRText-Light.woff2') format('woff2'),
+        url('FormaDJRText-Light.woff') format('woff');
+    font-weight: 300;
     font-style: normal;
     font-display: swap;
 }
@@ -118,4 +118,16 @@
 @font-face {
     font-family: "Node Display Extra Light";
     src: url('NodeDisplayExtraLight.woff2') format('woff2'), url('NodeDisplayExtraLight.woff') format('woff');
-  }
+}
+
+@font-face {
+    font-family: "FormaDJRText-Light-Testing";
+    src: url('FormaDJRText-Light-Testing.woff') format('woff'),
+        url('FormaDJRText-Light-Testing.woff2') format('woff2')
+}
+
+@font-face {
+    font-family: "FormaDJRText-Medium-Testing";
+    src: url("FormaDJRText-Medium-Testing.woff2") format('woff2')
+        url("FormaDJRText-Medium-Testing.woff") format('woff');
+}

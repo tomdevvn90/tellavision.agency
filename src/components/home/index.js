@@ -47,6 +47,7 @@ function HomePage(props) {
     ]).then((res) => {
       const homeContentResponseData = res[0].data;
       setHomeText(homeContentResponseData.content.rendered);
+      console.log(homeContentResponseData.acf.typography);
       setHomeTextStyle(homeContentResponseData.acf.typography);
 
       APIService.fetchFeaturedImageUrl(homeContentResponseData.featured_media)

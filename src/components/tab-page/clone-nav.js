@@ -248,7 +248,12 @@ const MenuClone = ( props ) => {
               className={ [ 'menu-item', `menu-id-${ item.ID }`, ( activeid == item.ID ? '__is-current' : '' ) ].join( ' ' ) } 
               onClick={ event => { goLink( event, item ) } } key={ item.ID }>
               <div className="menu-color-background" style={ menu_bg_style }></div>
-              <span className="menu-text" style={ { color: item.select_logo_color.toLowerCase() } }>{ item.title }</span>
+              <span className="menu-text" style={ {
+                color: item.select_logo_color.toLowerCase(),
+                fontFamily: item.header_settings.font_family,
+                fontSize: item.header_settings.font_size,
+                fontStyle: item.header_settings.font_style,
+                } }>{ item.title }</span>
             </li>
           )
         } ) }

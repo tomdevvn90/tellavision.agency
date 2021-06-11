@@ -2,6 +2,7 @@ import React, { useState, useEffect, createRef } from 'react'
 import Styled from 'styled-components'
 import { useTransitionHistory } from 'react-route-transition'
 import './nav.scss'
+import { listenerCount } from 'events'
 
 const MenuContainer = Styled.div`
   opacity: ${ props => props.show };
@@ -89,13 +90,19 @@ const MainMenu = ( props ) => {
             '--menu-color': item.background_color,
             backgroundColor: item.background_color
           }
+          console.log(item);
 
           return ( 
             <li 
               className={ [ 'menu-item', `menu-id-${ item.ID }`, ( (activeid && activeid == item.ID) ? '__is-current' : '' ) ].join( ' ' ) } 
               onClick={ event => { goLink( event, item ) } } key={ item.ID }>
               <div className={ [ 'menu-color-background', (appContext?.selectedTabBasicDetails?.ID == item.ID ? '__is-full-color--test' : '') ].join( ' ' ) } style={ menu_bg_style }></div>
-              <span className={ [ 'menu-text' ].join( ' ' ) } style={ { color: item.select_logo_color.toLowerCase() } }>{ item.title }</span> 
+              <span className={ [ 'menu-text' ].join( ' ' ) } style={ { 
+                color: item.select_logo_color.toLowerCase(),
+                fontFamily: item.header_settings.font_family,
+                fontSize: item.header_settings.font_size,
+                fontStyle: item.header_settings.font_style
+                } }>{ item.title }</span> 
             </li>
           )
         } ) }

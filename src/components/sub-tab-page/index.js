@@ -297,6 +297,7 @@ function SubTabPage(props) {
                   </p>
                 </SubMenuTitle>
                 <SubMenuContent currentTabSubPageData={currentTabSubPageData}>
+                  {console.log('check this', currentTabSubPageData)}
                   {currentTabSubPageData
                     ? ReactHtmlParser(currentTabSubPageData.content.rendered)
                     : ""}
