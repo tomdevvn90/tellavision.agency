@@ -22,7 +22,6 @@ const NavCloneforTab = ( props ) => {
     if( ! currentMenu ) return;
 
     window.menuItemHeightCache = window.menuItemHeight ? window.menuItemHeight : null
-    // console.log( window.menuItemHeightCache )
     const showNav = () => {
       /**
        * 16 => About Us page
@@ -185,12 +184,14 @@ const MenuClone = ( props ) => {
 
       // Title 
       _menuTitle.style.setProperty( 'color', menuTitle.style.color )
+      _menuTitle.style.setProperty( 'font-family', menuTitle.style.fontFamily )
+      _menuTitle.style.setProperty( 'font-style', menuTitle.style.fontStyle )
       _menuTitle.style.setProperty( 'position', 'absolute' )
       _menuTitle.style.setProperty( 'z-index', 1 )
       _menuTitle.style.setProperty( 'top', `${ menuTitle.offsetTop }px` )
       _menuTitle.style.setProperty( 'left', `${ menuTitle.offsetLeft }px` )
       _menuTitle.style.setProperty( 'font-size', '30px' )
-      _menuTitle.style.setProperty( 'font-family', 'Playfair Display SC' )
+      // _menuTitle.style.setProperty( 'font-family', 'Playfair Display SC' )
       _menuTitle.style.setProperty( 'transition', '1.2s' )
       _menuTitle.style.setProperty( '-webkit-transition', '1.2s' )
       _menuTitle.innerHTML = menu.title
@@ -222,7 +223,6 @@ const MenuClone = ( props ) => {
       menu_text.style.setProperty( 'opacity', '' )
       
       try {
-        console.log( document.querySelector( '#tab-page .menu-item-main-content' ) )
         document.querySelector( '#tab-page .menu-item-main-content' ).style.setProperty( 'opacity', '' )
       } catch( e ) {
 
