@@ -272,7 +272,6 @@ function TabPage(props) {
                 : primaryMenu[0];
               let selectedMenu = { ...menu, ...{ 'prev_menu': prevMenu }, ...{ 'next_menu': nextMenu } };
               setTabBasicDetails(selectedMenu);
-              // console.log(selectedMenu);
               sharedData.setSelectedTabBasicDetails(selectedMenu);
 
               let APICall = getTabContentUrl(selectedMenu, "current");
@@ -460,7 +459,6 @@ function TabPage(props) {
 
     // context.logo
     // document.querySelector( '#tab-page #header-logo' ).src = context.logo
-    // console.log( context.logo )
 
     let TabLogo = document.querySelector( '#tab-page #header-logo' )
     let TabLogoPos = TabLogo.getBoundingClientRect()
@@ -496,6 +494,8 @@ function TabPage(props) {
        * Page title 
        */
       _menuTitle.style.setProperty( 'color', menuTitle.style.color )
+      _menuTitle.style.setProperty( 'font-family', menuTitle.style.fontFamily )
+      _menuTitle.style.setProperty( 'font-style', menuTitle.style.fontStyle )
       _menuTitle.style.setProperty( 'position', 'absolute' )
       _menuTitle.style.setProperty( 'z-index', 1 )
       // _menuTitle.style.setProperty( 'top', `${ menuItemPos.y - mainPos.y }px` )
@@ -504,7 +504,7 @@ function TabPage(props) {
       _menuTitle.style.setProperty( 'left', `${ menuTitle.offsetLeft + main.offsetLeft - 15 }px` )
       _menuTitle.style.setProperty( 'font-size', '30px' )
       _menuTitle.style.setProperty( 'text-align', 'center' )
-      _menuTitle.style.setProperty( 'font-family', 'Playfair Display SC' )
+      // _menuTitle.style.setProperty( 'font-family', 'Playfair Display SC' )
       _menuTitle.style.setProperty( 'transition', '1.2s' )
       _menuTitle.style.setProperty( '-webkit-transition', '1.2s' )
       _menuTitle.innerHTML = menuTitle.innerHTML
@@ -539,7 +539,6 @@ function TabPage(props) {
       }
 
       setTimeout( () => {
-        // console.log( menuPos.width, menuPos.height )
         layer_bg_color.style.setProperty( 'width', `${ menuPos.width }px` )
         layer_bg_color.style.setProperty( 'height', `${ menuPos.height }px` )
         layer_bg_color.style.setProperty( 'left', `${ menuPos.x }px` )
@@ -635,7 +634,6 @@ function TabPage(props) {
           : primaryMenu[0];
         let selectedMenu = { ...menu, ...{ 'prev_menu': prevMenu }, ...{ 'next_menu': nextMenu } }
         setTabBasicDetails(selectedMenu);
-        // console.log(selectedMenu);
         // if (action === "next") {
         //   setPreviousTabContent(tabContent);
         //   setTabContent(nextTabContent);
@@ -689,7 +687,6 @@ function TabPage(props) {
 
     setTimeout(function () { 
       UpdateMenu(menuDetails, 'next')
-      // console.log( menuDetails.background_color )
       document.querySelector( '#tab-page' ).style.setProperty( 'background-color', menuDetails.background_color )
       document.querySelector( '#tab-page' ).style.setProperty( 'box-shadow', `${ menuDetails.background_color } 0px 0px 0px 100vw` )
     }, 500);

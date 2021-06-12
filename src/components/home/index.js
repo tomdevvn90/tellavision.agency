@@ -47,7 +47,6 @@ function HomePage(props) {
     ]).then((res) => {
       const homeContentResponseData = res[0].data;
       setHomeText(homeContentResponseData.content.rendered);
-      console.log(homeContentResponseData.acf.typography);
       setHomeTextStyle(homeContentResponseData.acf.typography);
 
       APIService.fetchFeaturedImageUrl(homeContentResponseData.featured_media)
@@ -161,6 +160,8 @@ function HomePage(props) {
 
       // Title 
       _menuTitle.style.setProperty( 'color', menuTitle.style.color )
+      _menuTitle.style.setProperty( 'font-family', menuTitle.style.fontFamily )
+      _menuTitle.style.setProperty( 'font-style', menuTitle.style.fontStyle )
       _menuTitle.style.setProperty( 'position', 'absolute' )
       _menuTitle.style.setProperty( 'z-index', 1 )
       // _menuTitle.style.setProperty( 'top', `${ menuItemPos.y - mainPos.y }px` )
@@ -168,7 +169,7 @@ function HomePage(props) {
       _menuTitle.style.setProperty( 'top', `${ menuTitle.offsetTop }px` )
       _menuTitle.style.setProperty( 'left', `${ menuTitle.offsetLeft }px` )
       _menuTitle.style.setProperty( 'font-size', '30px' )
-      _menuTitle.style.setProperty( 'font-family', 'Playfair Display SC' )
+      // _menuTitle.style.setProperty( 'font-family', 'Playfair Display SC' )
       _menuTitle.style.setProperty( 'transition', '1.2s' )
       _menuTitle.style.setProperty( '-webkit-transition', '1.2s' )
       _menuTitle.innerHTML = menu.title

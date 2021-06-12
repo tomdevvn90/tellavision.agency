@@ -90,7 +90,6 @@ const MainMenu = ( props ) => {
             '--menu-color': item.background_color,
             backgroundColor: item.background_color
           }
-          console.log(item);
 
           return ( 
             <li 
